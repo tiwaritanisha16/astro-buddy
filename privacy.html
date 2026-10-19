@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Privacy Policy — {{ site_name }}{% endblock %}
+{% block desc %}What data this website collects, why, where it is stored, how long photos are kept and how to delete your data.{% endblock %}
+{% block content %}
+<section class="page-head sky"><div class="wrap"><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / Privacy</p><h1>Privacy Policy</h1></div></section>
+<section class="section legal"><div class="narrow">
+  <p class="updated">This page describes how this installation of the website actually works. The site owner should keep it up to date if the code or settings change.</p>
+
+  <h2>What we collect, and why</h2>
+  <ul>
+    <li><strong>Required:</strong> full name, gender and date of birth, to calculate your numbers and write your reading. Gender is also used to show which hand to photograph.</li>
+    <li><strong>Optional:</strong> time of birth, place of birth, mole location, and your chosen reading categories.</li>
+    <li><strong>Optional photos:</strong> a face photo and/or a palm photo, only if you upload them.</li>
+    <li><strong>Generated results:</strong> your two numbers, the reading text (including any AI-written text), whether you gave photo consent, the creation time, and whether the report was unlocked.</li>
+    <li><strong>Cookie:</strong> a small session cookie that protects forms (CSRF) and supports payment verification. No advertising or analytics cookies are set by this website.</li>
+  </ul>
+
+  <h2>Calculators and the Vastu Meter</h2>
+  <p>The Core Numbers Calculator and the Vastu Meter do not save what you enter. Your name, dates and room choices are used to produce the result for that request only. The Vastu Meter sends your choices in the page address, so they may appear in your browser history.</p>
+
+  <h2>Where it is stored</h2>
+  <p>Readings are stored in a SQLite database file on this website’s server, and photos in an uploads folder on the same server. There are no user accounts. Your reading is reached through a long random private link; anyone who has that link can open it, so please do not share it publicly.</p>
+
+  <h2>Photos and Google Gemini</h2>
+  <ul>
+    <li>Photos are optional. Without a photo, <strong>nothing is sent to Gemini</strong>.</li>
+    <li>If you upload a photo and tick the consent box, that image and a short instruction are sent to Google’s Gemini AI service to generate a speculative reflection. The face and palm photos are sent in separate requests. For the palm request, your gender choice is included. Your name, date of birth and place of birth are not sent.</li>
+    <li>Google processes data under its own terms and privacy policy. We do not control Google’s handling of what it receives. Please avoid uploading sensitive or identifying images you do not wish to share with a third-party AI provider.</li>
+    <li>Before saving, we re-encode the photo as a JPEG, which removes camera metadata such as GPS tags, and give it a random file name.</li>
+    <li>AI output can be wrong or generic. It is not a reliable analysis of you.</li>
+  </ul>
+
+  <h2>How long we keep things</h2>
+  <ul>
+    <li><strong>Photos:</strong> kept up to <strong>{{ retention_days }} days</strong> after upload, then removed automatically the next time the site starts or processes a new reading (there is no separate background scheduler). You can delete them sooner.</li>
+    <li><strong>Reading records</strong> (details and text): kept until they are deleted. They are not removed automatically.</li>
+  </ul>
+
+  <h2>Deleting your data</h2>
+  <p>On your preview and report pages there are buttons to <strong>delete your photos</strong> and to <strong>delete the whole reading</strong>. Deleted records and photo files are removed from this website’s storage. If you no longer have your link, contact the site owner via the <a href="{{ url_for('contact') }}">Contact page</a> and include the name and date of birth you entered so the record can be found.</p>
+  <p>Data already received by Google Gemini is subject to Google’s own retention rules, which this website cannot delete.</p>
+
+  <h2>Other services</h2>
+  <ul>
+    <li><strong>Google Fonts</strong> are loaded by your browser, so Google receives your IP address when pages load.</li>
+    <li><strong>Razorpay</strong> {{ payment_note }} Card details are never stored by this website.</li>
+  </ul>
+
+  <h2>Your choices</h2>
+  <p>You can use the site without uploading photos, without giving a birth time or place, and without paying. Use the Contact page for privacy questions.</p>
+</div></section>
+{% endblock %}

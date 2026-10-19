@@ -1,0 +1,20 @@
+{# Astrologer card. Values come from .env (see .env.example). #}
+<div class="astro reveal">
+  <div class="avatar" aria-hidden="true">{{ astro.name[:1] }}</div>
+  <div>
+    <span class="tag">Human consultation</span>
+    <h3 style="margin-top:.5rem">Talk to astrologer {{ astro.name }} at {{ site_name }}</h3>
+    <p>The tools on this website help you explore numerology and Vastu on your own. If you would like to discuss your questions with a person,
+      visit {{ site_name }} or contact astrologer {{ astro.name }}.</p>
+    <div class="links">
+      {% if astro.url %}<a class="btn btn-primary btn-sm" href="{{ astro.url }}" target="_blank" rel="noopener noreferrer">Visit {{ site_name }}</a>
+      {% else %}<span class="pending" title="Set ASTROBUDDY_URL in .env">🔗 {{ site_name }} website link: not set yet</span>{% endif %}
+      {% if astro.instagram %}<a class="btn btn-outline btn-sm" href="{{ astro.instagram }}" target="_blank" rel="noopener noreferrer">Instagram</a>
+      {% else %}<span class="pending" title="Set ASTROLOGER_INSTAGRAM_URL in .env">📷 Instagram link: not set yet</span>{% endif %}
+      {% if astro.phone_is_placeholder %}<span class="pending">📞 {{ astro.phone }} (placeholder number)</span>
+      {% else %}<a class="btn btn-gold btn-sm" href="{{ astro.phone_link }}">📞 Call {{ astro.phone }}</a>{% endif %}
+    </div>
+    {% if astro.phone_is_placeholder or not astro.url or not astro.instagram %}
+    <p class="note">Site owner: items marked “not set yet” or “placeholder” are configuration placeholders. Replace them in the <code>.env</code> file.</p>{% endif %}
+  </div>
+</div>

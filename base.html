@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ site_name }} — Numerology & Vastu{% endblock %}</title>
+  <meta name="description" content="{% block desc %}Personal numerology readings and practical Vastu direction guidance, built on traditional systems and clear calculations.{% endblock %}">
+  <meta name="theme-color" content="#10182D">
+  <meta property="og:title" content="{{ self.title() }}"><meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='img/favicon.svg') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  {% block header %}
+  <header class="nav">
+    <div class="nav-in">
+      <a class="brand" href="{{ url_for('index') }}" aria-label="{{ site_name }} - Home"><img src="{{ url_for('static', filename='img/logo-mark.svg') }}" alt="" width="40" height="40"><span class="brand-text"><span class="wordmark">{{ brand_parts[0] }}<b>{{ brand_parts[1] }}</b></span><span class="tagline">Numerology · Vastu</span></span></a>
+      <ul class="menu" id="menu">
+        {% for item in nav %}
+        <li {% if item.children %}class="has-sub"{% endif %}>
+          <a href="{{ url_for(item.ep) }}" {% if page in item.pages %}aria-current="page"{% endif %}>{{ item.label }}</a>
+          {% if item.children %}<ul class="sub">{% for ep, label in item.children %}<li><a href="{{ url_for(ep) }}">{{ label }}</a></li>{% endfor %}</ul>{% endif %}
+        </li>
+        {% endfor %}
+        <li class="nav-cta-m"><a href="{{ url_for('contact') }}" {% if page == 'contact' %}aria-current="page"{% endif %}>Contact Us</a></li>
+      </ul>
+      <a class="btn btn-gold btn-sm nav-cta" href="{{ url_for('contact') }}">Contact Us</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  {% endblock %}
+
+  {% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}
+  <div class="flash-wrap" role="status">{% for category, message in messages %}<div class="flash flash-{{ category }}">{{ message }}</div>{% endfor %}</div>
+  {% endif %}{% endwith %}
+
+  <main id="main" class="page-in">{% block content %}{% endblock %}</main>
+
+  {% block footer %}
+  <footer class="footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <a class="brand" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo-mark.svg') }}" alt="" width="40" height="40"><span class="brand-text"><span class="wordmark">{{ brand_parts[0] }}<b>{{ brand_parts[1] }}</b></span></span></a>
+          <p style="margin-top:.8rem">Numerology readings and Vastu direction guidance, built on traditional systems and clearly explained calculations.</p>
+        </div>
+        <div><h4>Numerology</h4><ul>
+          <li><a href="{{ url_for('reading_form') }}">Personal Reading</a></li>
+          <li><a href="{{ url_for('numerology_calculator') }}">Core Numbers Calculator</a></li>
+          <li><a href="{{ url_for('numerology_guide') }}">Number Guide</a></li>
+          <li><a href="{{ url_for('categories') }}">Reading Topics</a></li>
+        </ul>
+        <h4 style="margin-top:1.2rem">Vastu</h4><ul>
+          <li><a href="{{ url_for('vastu_meter') }}">Vastu Meter</a></li>
+          <li><a href="{{ url_for('vastu_guide') }}">Room-by-Room Guide</a></li>
+        </ul></div>
+        <div><h4>Company</h4><ul>
+          <li><a href="{{ url_for('about') }}">About Us</a></li><li><a href="{{ url_for('how_it_works') }}">How It Works</a></li>
+          <li><a href="{{ url_for('faq') }}">FAQ</a></li><li><a href="{{ url_for('contact') }}">Contact</a></li>
+          <li><a href="{{ url_for('privacy') }}">Privacy Policy</a></li><li><a href="{{ url_for('terms') }}">Terms &amp; Conditions</a></li>
+        </ul></div>
+        <div><h4>Astrologer {{ astro.name }}</h4><ul>
+          <li>{% if astro.url %}<a href="{{ astro.url }}" target="_blank" rel="noopener noreferrer">{{ site_name }} website</a>{% else %}{{ site_name }} website: link not set yet{% endif %}</li>
+          <li>{% if astro.instagram %}<a href="{{ astro.instagram }}" target="_blank" rel="noopener noreferrer">Instagram</a>{% else %}Instagram: link not set yet{% endif %}</li>
+          <li>{% if astro.phone_is_placeholder %}Phone: {{ astro.phone }} (placeholder){% else %}<a href="{{ astro.phone_link }}">Phone: {{ astro.phone }}</a>{% endif %}</li>
+        </ul></div>
+      </div>
+      <p class="small">Numerology and Vastu are traditional systems. Results are for reflection and general guidance, are not scientifically validated, and do not guarantee health, wealth, relationship or career outcomes. Nothing here is medical, legal or financial advice. © {{ year }} {{ site_name }}.</p>
+    </div>
+  </footer>
+  {% endblock %}
+  <button class="to-top no-print" id="toTop" aria-label="Back to top">↑</button>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

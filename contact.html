@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Contact & Astro Buddy — {{ site_name }}{% endblock %}
+{% block desc %}Contact astrologer Dev or visit Astro Buddy for a human consultation.{% endblock %}
+{% block content %}
+<section class="page-head sky"><div class="wrap"><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / Contact</p><h1>Contact &amp; Astro Buddy</h1>
+  <p class="lead">For a personal consultation with a human astrologer.</p></div></section>
+<section class="section"><div class="narrow">{% include "_astro.html" %}
+  <div class="card reveal" style="margin-top:2rem"><h3>About consultations</h3>
+    <p>This website gives AI-assisted, reflective readings. A human astrologer can discuss your questions in a conversation. Please do not treat any astrology consultation as a substitute for medical, legal, financial or mental-health advice.</p>
+    <p>Questions about your data or photos? See the <a href="{{ url_for('privacy') }}">Privacy Policy</a> for how to request deletion.</p></div>
+</div></section>
+{% endblock %}

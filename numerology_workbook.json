@@ -1,0 +1,1398 @@
+{
+ "source_file": "Numerology_Numbers_and_Formulas.xls",
+ "sheets": {
+  "Numerology Table": {
+   "purpose": "Overview of 24 numerology numbers and how each is calculated",
+   "rows": [
+    {
+     "no": 1,
+     "name": "Mulank",
+     "also_called": "Driver / Psychic Number",
+     "formula": "Birth Day → reduce to 1–9. Example: 25 → 2+5 = 7",
+     "cell_range": "A2:D2"
+    },
+    {
+     "no": 2,
+     "name": "Bhagyank",
+     "also_called": "Destiny / Life Path / Conductor",
+     "formula": "Add all digits of complete DOB → reduce",
+     "cell_range": "A3:D3"
+    },
+    {
+     "no": 3,
+     "name": "Birth Day Number",
+     "also_called": "Birthday Number",
+     "formula": "Actual birth date, e.g. 25 → 25/7",
+     "cell_range": "A4:D4"
+    },
+    {
+     "no": 4,
+     "name": "Compound Number",
+     "also_called": "Compound Vibration",
+     "formula": "Unreduced number before reduction, e.g. 16/7 or 25/7",
+     "cell_range": "A5:D5"
+    },
+    {
+     "no": 5,
+     "name": "Name Number",
+     "also_called": "Name / Destiny Number",
+     "formula": "Add numerical values of all letters of the name → reduce",
+     "cell_range": "A6:D6"
+    },
+    {
+     "no": 6,
+     "name": "Soul Urge Number",
+     "also_called": "Heart's Desire",
+     "formula": "Add values of vowels in the name → reduce",
+     "cell_range": "A7:D7"
+    },
+    {
+     "no": 7,
+     "name": "Personality Number",
+     "also_called": "Outer Personality",
+     "formula": "Add values of consonants in the name → reduce",
+     "cell_range": "A8:D8"
+    },
+    {
+     "no": 8,
+     "name": "Expression Number",
+     "also_called": "Name / Destiny Number",
+     "formula": "Add values of all letters → reduce",
+     "cell_range": "A9:D9"
+    },
+    {
+     "no": 9,
+     "name": "Maturity Number",
+     "also_called": "Maturity Potential",
+     "formula": "Life Path + Expression Number → reduce",
+     "cell_range": "A10:D10"
+    },
+    {
+     "no": 10,
+     "name": "Attitude Number",
+     "also_called": "Sun Number",
+     "formula": "Birth Day + Birth Month → reduce",
+     "cell_range": "A11:D11"
+    },
+    {
+     "no": 11,
+     "name": "Personal Year",
+     "also_called": "Year Number",
+     "formula": "Birth Day + Birth Month + Current Year → reduce",
+     "cell_range": "A12:D12"
+    },
+    {
+     "no": 12,
+     "name": "Personal Month",
+     "also_called": "",
+     "formula": "Personal Year + Current Month → reduce",
+     "cell_range": "A13:D13"
+    },
+    {
+     "no": 13,
+     "name": "Personal Day",
+     "also_called": "",
+     "formula": "Personal Month + Calendar Day → reduce",
+     "cell_range": "A14:D14"
+    },
+    {
+     "no": 14,
+     "name": "Universal Year",
+     "also_called": "Global Year",
+     "formula": "Add digits of current year → reduce",
+     "cell_range": "A15:D15"
+    },
+    {
+     "no": 15,
+     "name": "Universal Month",
+     "also_called": "Global Month",
+     "formula": "Universal Year + Current Month → reduce",
+     "cell_range": "A16:D16"
+    },
+    {
+     "no": 16,
+     "name": "Universal Day",
+     "also_called": "Global Day",
+     "formula": "Universal Month + Calendar Day → reduce",
+     "cell_range": "A17:D17"
+    },
+    {
+     "no": 17,
+     "name": "Karmic Debt Number",
+     "also_called": "Karmic Number",
+     "formula": "Look for 13, 14, 16 or 19 before reduction",
+     "cell_range": "A18:D18"
+    },
+    {
+     "no": 18,
+     "name": "Master Number",
+     "also_called": "Master Vibration",
+     "formula": "11, 22, 33 are generally retained",
+     "cell_range": "A19:D19"
+    },
+    {
+     "no": 19,
+     "name": "Life Lesson Number",
+     "also_called": "Missing Numbers",
+     "formula": "Identify numbers missing from the name's numerical values",
+     "cell_range": "A20:D20"
+    },
+    {
+     "no": 20,
+     "name": "Balance Number",
+     "also_called": "",
+     "formula": "Based on initial letters of the name",
+     "cell_range": "A21:D21"
+    },
+    {
+     "no": 21,
+     "name": "Hidden Passion Number",
+     "also_called": "Dominant Number",
+     "formula": "Number appearing most frequently in the name calculation",
+     "cell_range": "A22:D22"
+    },
+    {
+     "no": 22,
+     "name": "Challenge Numbers",
+     "also_called": "Life Challenges",
+     "formula": "Calculated from birth day, month and year",
+     "cell_range": "A23:D23"
+    },
+    {
+     "no": 23,
+     "name": "Pinnacle Numbers",
+     "also_called": "Life Cycles",
+     "formula": "Calculated from combinations of birth day, month and year",
+     "cell_range": "A24:D24"
+    },
+    {
+     "no": 24,
+     "name": "Lucky Number",
+     "also_called": "Personal Lucky Vibration",
+     "formula": "Usually derived from Mulank, Bhagyank and/or Name Number",
+     "cell_range": "A25:D25"
+    }
+   ]
+  },
+  "Sheet2": {
+   "purpose": "Core numbers: what each is based on, what it describes, and a worked example",
+   "core_numbers": [
+    {
+     "no": 1,
+     "title": "Life Path / Birth Force / Birth Path Number",
+     "based_on": "Based on Date of Birth ;",
+     "describes": "1. It describe what you are deep down\n2.What is natural for you\n3. The Traits you carry through out your life",
+     "example": "23 - 03-1982\n=(2+3)+(0+3)+(1+9+8+2)\n=5+3+20\n=8+(2+0) =8+2 = 10=1+0=1",
+     "notes": "In Life path number if Master number such as 11, 22, 33 comes in the Year summation then consider it as it is and don’t further sum it up.",
+     "source_row": 9
+    },
+    {
+     "no": 2,
+     "title": "Destiny/Expression Number",
+     "based_on": "Based on the Letters in your Full Name name",
+     "describes": "It indicate the purpose, goal and direction of your life",
+     "example": "VIDYA SINGH\n49471  19579\n={4+9+4+7+1)+ (1+9+5+7+9)\n=25+31\n=(2+5) + (3+1)\n=7 + 4=11\nMaster Number",
+     "notes": "Master Numbers are \n11:Visionary, Spiritual messenger\n22:The Master Builder, Practical Manifestor\n33: The Master Teacher Healer, Compassionate Leader",
+     "source_row": 14
+    },
+    {
+     "no": 3,
+     "title": "Soul/ Heart /Soul Urge Number",
+     "based_on": "Based on the vowels in your name",
+     "describes": "1. It indicates desires that influence your life",
+     "example": "VIDYA SINGH\n09071  09000\n=(0=9+0+7+1)+(0+9+0+0+0)\n=17+9\n=(1+7)+9= 17=1+7=8",
+     "notes": "",
+     "source_row": 19
+    },
+    {
+     "no": 5,
+     "title": "Personality Number or Dream Number",
+     "based_on": "Based on the consonants in your name",
+     "describes": "Describe your inner desires and personality or you make first impression about others",
+     "example": "VIDYA  SINGH\n40401  10578\n=(4+0+4+0+1)+(1+0+5+7+8)\n=9+21=30=3+0=3",
+     "notes": "",
+     "source_row": 23
+    },
+    {
+     "no": 6,
+     "title": "Birthday Number",
+     "based_on": "Based on the Day of the Month",
+     "describes": "Acts as modifier of one Life Path Number",
+     "example": "DoB: 23 - 03-1982\nBirthday Number:23 (5)",
+     "notes": "1. Birthday Number ranges from 1 to 31\n2. Also consider\nFluctuating Combination: 1&5;  6&9; 2&3\nDiscordant Combination: 4&5; 8 &11; 6 & 7 \nHarmonious Combination: 2&6; 3 & 6 ;",
+     "source_row": 27
+    },
+    {
+     "no": 7,
+     "title": "Intensified Number",
+     "based_on": "The number of letters repeated in Birth Full  Name",
+     "describes": "Influence on individual Behavior, Life Path",
+     "example": "VIDYA SINGH\n4 9 4 7 1 1 9 5 7 8\n\n1: Twice\n2: Zero\n3:Zero\n4: Twice\n5: Once\n6: Zero\n7: Twice\n8: Once\n9: Twice",
+     "notes": "Intensified Number: 1, 4, 7, 9\n\nAlways considertop  two most frequently number.\nSince 4 number came with same frequency and hence took all 4 numbers",
+     "source_row": 30
+    },
+    {
+     "no": 8,
+     "title": "Absent  Number",
+     "based_on": "The number missing in Birth Full Name or number missing from intensified number",
+     "describes": "Indicate potential challenges or area of growth",
+     "example": "VIDYA SINGH\n4 9 4 7 1  1 9 5 7 8\n\n1: Twice\n2: Zero\n3:Zero\n4: Twice\n5: Once\n6: Zero\n7: Twice\n8: Once\n9: Twice",
+     "notes": "Intensified Number: 1,4,( Taken to[p 2 number with highest frequency, Even though there are four number with same frequency but will take 2 only\n\nAbsent Number: 2,3,6 ( Consider those number which is absent adter considering all core number and Intensified Number\n\nAlways considertop  two most frequently number",
+     "source_row": 33
+    },
+    {
+     "no": 9,
+     "title": "Growth Number",
+     "based_on": "First Name of your Full Name \nor \nFirst Vowel of your first name\nor\n your nick name",
+     "describes": "1. Day to Day Life\n2. Personal Self\n3. How you differentiate yourself from your family",
+     "example": "VIDYA     SINGH\n4 9 4 7 1\n=4+9+4+7+1= 25 =2+5 =7",
+     "notes": "Growth Number = 7 = Introspection",
+     "source_row": 36
+    },
+    {
+     "no": 10,
+     "title": "Habit Challenge Number/ Point of Security",
+     "based_on": "Total Numbers of Letter in your full  name",
+     "describes": "1. Area of your life you might face challenge\n2.Habit you tend to overdo or neglect\n3. Important ot identify your personal pitfall and area of improvement\n4.",
+     "example": "VIDYA SINGH\n\nVIDYA= 5 Letters\nSINGH=5 Letters\nTotal -10 Letters= 1+0=1",
+     "notes": "Habit Challenge Number= 1",
+     "source_row": 40
+    },
+    {
+     "no": 11,
+     "title": "Maturity Number/ Reality/ Ultimate Goal number",
+     "based_on": "Life Path Number + Destiny Number\n\nDon’t Reduce Master Number like 11,22,33,",
+     "describes": "1.Culmination of your Journey and the person you are striving to become.\n2. It shows the traits which will be more prominents post mid age or after Thirties",
+     "example": "Life Path Number\n\n23 - 03-1982 ( VIDYA SINGH\n=(2+3)+(0+3)+(1+9+8+2)\n=5+3+20\n=8+(2+0) =8+2 = 10=1+0=1\n+\nDestiny Number\nVIDYA SINGH\n49471  19579\n={4+9+4+7+1)+ (1+9+5+7+9)\n=25+31\n=(2+5) + (3+1)\n=7 + 4=11\n\nMaturity Number = 11+1 = 12=1+2=3",
+     "notes": "Maturity Number= 3",
+     "source_row": 44
+    },
+    {
+     "no": 12,
+     "title": "Karmic Number",
+     "based_on": "Birth Day +  Month of your Date of Birth\n\nDon't Reduce the added number\n\n\nIf the summation comes as 13,14,16, 19 then karmic number is present else you are free from that",
+     "describes": "1. Reveal unresolved issues\n2.Debt frp, the past lives and addressed in this lifetime\n3. Karmic Numbers are 13, 14, 16, 19",
+     "example": "Date of birth\n23 - 03-1982\nDay-Month- Year\n\nKarmic Number= Day + Month\n=23+03  = 26 = Not a Karmic Number",
+     "notes": "You are free from Karmic Number",
+     "source_row": 48
+    },
+    {
+     "no": 13,
+     "title": "Personal / Universal Year Number",
+     "based_on": "Life Path Number = Day+Month = Reduce the number\n\nYour Birth Year ( 199X) = Reduce the Number\n\nYou Want to know Personal Year Number other than Birth Year \nFor example Birth Number = 199X\nPersonal Year = 202Y\nReduce 202Y\nPersonal Year Number ( 202Y)= (Day+Month)+ Year\nPersonal Year Number ( 199X)= (Day+Month)+ Year",
+     "describes": "1. What particular number holds for you\n2. Describes type of experiences you will be experiencing",
+     "example": "Date of birth\n23 - 03-1982\nStep 1 Day+Month = 23 +03= 5+3=8\nPersonal Year -Birth Year= 1982=1+9+8+2=20=2\n\nPersonal Year= 2026 = 2+0+2+6=10=1+0=1\n\nPersonal Year Number for 2026= 8+1=9\n\nPersonal Year Number for 1982( Birth)= 8+2=10=1+0=1",
+     "notes": "Personal Year Number for 2026=9\n\nPersonal Year Number for Birth Year ( 1982)=1",
+     "source_row": 52
+    },
+    {
+     "no": 14,
+     "title": "Personal Month Number",
+     "based_on": "Personal Month number =Personal Year Number + Current or Upcoming Month Digits of current year",
+     "describes": "1.How your month would be?\n2. Do's and Do't of the Month",
+     "example": "Date of birth\n23 - 03-1982\nLife Path number+ Day-Month- Year\n\nPersonal Year Number= ( Day+Month)+Current Year\n=(23+03)+(2+0+2+6)\n=26+ 10\n=(2+6)+(1+0)\n=8+1=9\n\nPersonal Month Number for April 2026 = April + 9= 04+9=13=1+3=4",
+     "notes": "Personal Month Number= 4",
+     "source_row": 56
+    },
+    {
+     "no": 15,
+     "title": "Personal Day Number",
+     "based_on": "Personal Day number =Personal Month  Number + Current or Upcoming Day Digits of Month",
+     "describes": "1.How your Day would be?\n2. Do's and Do't of the Day",
+     "example": "Date of birth\n23 - 03-1982\nLife Path number+ Day-Month- Year\n\nPersonal Year Number= ( Day+Month)+Current Year\n=(23+03)+(2+0+2+6)\n=26+ 10\n=(2+6)+(1+0)\n=8+1=9\n\nPersonal Month Number for April 2026 = April + 9= 04+9=13=1+3=4\n\nPersoanl Day Number for 08th April 2026= 08+Personal Month Number\n=08+04=12=1+2=3",
+     "notes": "Peronal Day Number = 3",
+     "source_row": 60
+    },
+    {
+     "no": 16,
+     "title": "Life Path Period",
+     "based_on": "Life Path Period 1- Month of Life Path\nLife Path Period 2- Day of the Month\nLife Path Period 3 - Year of the Birth",
+     "describes": "1. Is an enhancement of Life Path Number\n2.Shows Mid Term Trend\n3. Show long term trend",
+     "example": "Date of birth\n23 - 03-1982",
+     "notes": "",
+     "source_row": 64
+    },
+    {
+     "no": 16,
+     "title": "Pinnacle Number",
+     "based_on": "1st = Sum (Month &  Day of Birth)\n2nd=Sum ( Day & Year of Birth)\n3rd= Sum ( 1st  & 2nd)\n4th = Sum ( Month & Year)",
+     "describes": "1. Is an enhancement of Life Path Number\n2.Shows Mid Term Trend\n3. Show long term trend",
+     "example": "Date of birth\n23 - 03-1982\n\nLife Path Number = 5+3+2=10=1\n\n1st =  Sum ( (0+3)+(2+3))=8\n2nd = Sum ((2+3)+(1+9+8+2))= (5+20)= ((5+(2+0))=7\n3rd= Sum (8+7)=15= 1+5= 6\n4th= Sum ((03)+(1982) = ((0+3)+(1+9+8+2)=3+20=2+2+0=4\n\nPinnacle of 8 for 1st = Upto 35 (36-life Path Number)\nPinnacle of 7 for 2nd= 35 to 43 (Pinnacle 1+9)\nPinnacle of 6 for 3rd = 43 to 52 (Pinnacle 2+9)\nPinnacle of 4 for 4th= Above 52 (Pinnacle 3+)\n\nPinnacle Number for 2026 = 2026 - 1982 = 44 Years ___ 43-52 Years - Pinnacle Number = 8",
+     "notes": "",
+     "source_row": 67
+    },
+    {
+     "no": 18,
+     "title": "Challenge Number\nLifeCycle Challenge= 3rd Challenge\nMain Life Challenge = 4th Challenge",
+     "based_on": "1st Challenge = | Day - Month|\n2nd Challenge = |Day- Year|\n3rd Challenge = | 1st - 2nd|\n4th Challenge= | Month - Year|",
+     "describes": "1 Outstanding Challenges : Occur repeatedly in your life and enable you to master it\n\n2.Mixed Challenge:Consists of Variety of different numbers brining the development that arises from working with multiple energies\n\n3. Cipher Challenge is Zero Challenge",
+     "example": "DoB = 15/ 08/1992\nDay = 15= 6\nMonth = 08=8\nYear = 1992=1+9+9+2=21= 3\nKeep 11 or 22 as Master Numbers (do not reduce).\n\n1st Challenge = |6-8| = 2\n2nd Challenge=|6-3|=3\n3rd Challenge =|2-3| =1\n4th Challenge=|8-3|=5\n\nLife Path Number = 6+8+3=17=8\n\nChallenge numbers follow the same age ranges as Pinnacles:\n\n1st Challenge: Birth to 36 – Life Path Number = 36-8=28\n\n2nd Challenge: Next 9 years = 28+9 =37\n\n3rd Challenge: Next 9 years = 37+9=46\n\n4th Challenge: Remainder of life = Above 46\n\nChallenge Number for 2026 = 2026 - 1992 = 34 Years ___ 28-37 Years - Challenge Number = 3",
+     "notes": "Final Result\n\n| Challenge | Number | Age Range | Key Lesson             |\n| --------- | ------ | --------- | ---------------------- |\n| 1st       | **2**  | 0–28      | Patience, cooperation  |\n| 2nd       | **3**  | 28–37     | Expression, confidence |\n| 3rd       | **1**  | 37–46     | Independence           |\n| 4th       | **5**  | 46+       | Discipline vs freedom  |",
+     "source_row": 71
+    },
+    {
+     "no": 19,
+     "title": "Essence Number",
+     "based_on": "Explained in Essence Number",
+     "describes": "",
+     "example": "",
+     "notes": "",
+     "source_row": 75
+    },
+    {
+     "no": 20,
+     "title": "Transit Letters",
+     "based_on": "Explained in Transit Letters",
+     "describes": "",
+     "example": "",
+     "notes": "",
+     "source_row": 79
+    }
+   ]
+  },
+  "Sheet1": {
+   "purpose": "Letter-value tables, vowel table, combination matrix, life-period / pinnacle / challenge tables, essence-number worked table and transit letters",
+   "chaldean": {
+    "values": {
+     "A": 1,
+     "B": 2,
+     "C": 3,
+     "D": 4,
+     "E": 5,
+     "F": 8,
+     "G": 3,
+     "H": 5,
+     "I": 1,
+     "J": 1,
+     "K": 2,
+     "L": 3,
+     "M": 4,
+     "N": 5,
+     "O": 7,
+     "P": 8,
+     "Q": 1,
+     "R": 2,
+     "S": 5,
+     "T": 4,
+     "U": 6,
+     "V": 6,
+     "W": 6,
+     "X": 3,
+     "Y": 1,
+     "Z": 7
+    },
+    "cells": "C8:K18"
+   },
+   "pythagorean": {
+    "values": {
+     "A": 1,
+     "B": 2,
+     "C": 3,
+     "D": 4,
+     "E": 5,
+     "F": 6,
+     "G": 7,
+     "H": 8,
+     "I": 9,
+     "J": 1,
+     "K": 2,
+     "L": 3,
+     "M": 4,
+     "N": 5,
+     "O": 6,
+     "P": 7,
+     "Q": 8,
+     "R": 9,
+     "S": 1,
+     "T": 2,
+     "U": 3,
+     "V": 4,
+     "W": 5,
+     "X": 6,
+     "Y": 7,
+     "Z": 8
+    },
+    "cells": "C24:L31"
+   },
+   "vowel_values": {
+    "values": {
+     "A": 1,
+     "U": 3,
+     "E": 5,
+     "W": 5,
+     "O": 6,
+     "Y": 7,
+     "I": 9
+    },
+    "note": "W and Y is considered as Vowel if the preceeding letter is vowel",
+    "cells": "C47:L51"
+   },
+   "intensified_absence_reference": {
+    "groups": [
+     "AJS",
+     "BKT",
+     "CLU",
+     "DMV",
+     "ENW",
+     "FOX",
+     "GPY",
+     "HQZ",
+     "IR"
+    ],
+    "row36_raw": [
+     "3 to 4",
+     1,
+     1,
+     1,
+     "3 to 4",
+     1,
+     0,
+     "0 to 1",
+     3
+    ],
+    "label": "Intensified & Absence Number",
+    "cells": "C34:L36"
+   },
+   "essence_year_header": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "combination_matrix": {
+    "title": "Combination of Fluctuating, Discordant and Harmonious Combination Mapping",
+    "numbers": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     11,
+     22,
+     33
+    ],
+    "cells": {
+     "1-2": "-",
+     "1-3": "+",
+     "1-4": "+",
+     "1-5": "0",
+     "1-6": "-",
+     "1-7": "-",
+     "1-8": "0",
+     "1-9": "-",
+     "1-11": "-",
+     "1-22": "-",
+     "1-33": "-",
+     "2-3": "+",
+     "2-4": "+",
+     "2-5": "-",
+     "2-6": "+",
+     "2-7": "-",
+     "2-8": "+",
+     "2-9": "+",
+     "2-11": "+",
+     "2-22": "-",
+     "2-33": "-",
+     "3-4": "-",
+     "3-5": "+",
+     "3-6": "+",
+     "3-7": "-",
+     "3-8": "+",
+     "3-9": "+",
+     "3-11": "+",
+     "3-22": "-",
+     "3-33": "-",
+     "4-5": "-",
+     "4-6": "+",
+     "4-7": "+",
+     "4-8": "+",
+     "4-9": "-",
+     "4-11": "-",
+     "4-22": "0",
+     "4-33": "0",
+     "5-6": "-",
+     "5-7": "-",
+     "5-8": "+",
+     "5-9": "-",
+     "5-11": "-",
+     "5-22": "-",
+     "5-33": "-",
+     "6-7": "-",
+     "6-8": "+",
+     "6-9": "+",
+     "6-11": "+",
+     "6-22": "+",
+     "6-33": "+",
+     "7-8": "+",
+     "7-9": "-",
+     "7-11": "+",
+     "7-22": "-",
+     "7-33": "+",
+     "8-9": "-",
+     "8-11": "-",
+     "8-22": "+",
+     "8-33": "-",
+     "9-11": "+",
+     "9-22": "+",
+     "9-33": "+",
+     "11-22": "-",
+     "11-33": "-",
+     "22-33": "-"
+    },
+    "cell_range": "D57:P71",
+    "legend_in_source": null
+   },
+   "life_period": {
+    "title": "Life Period Number Phases",
+    "headers": {
+     "p1": "Life Path Period",
+     "p1_sub": "Birth & Adulthood",
+     "p2": "2nd Life Path Period",
+     "p2_sub": "Productive Time of Life",
+     "p3": "3rdLife Path Period",
+     "p3_sub": "Knowledge & Wisdom",
+     "month_col": "Month of Birth(Reducing)",
+     "day_col": "Day of Birth_ Reducing",
+     "year_col": "Year of Birth - Reduce",
+     "sig_col": "Significance of Number",
+     "lp_col": "Life Path Number"
+    },
+    "rows": [
+     {
+      "life_path": 9,
+      "p1_start": 0,
+      "p1_end": 27,
+      "p2_start": 28,
+      "p2_end": 54,
+      "p3_raw": "53+",
+      "significance": "Completion, humanitarian work",
+      "source_row": 80
+     },
+     {
+      "life_path": 8,
+      "p1_start": 0,
+      "p1_end": 28,
+      "p2_start": 29,
+      "p2_end": 55,
+      "p3_raw": "56+",
+      "significance": "Power, success, material growth",
+      "source_row": 82
+     },
+     {
+      "life_path": 7,
+      "p1_start": 0,
+      "p1_end": 29,
+      "p2_start": 30,
+      "p2_end": 56,
+      "p3_raw": "57+",
+      "significance": "Spiritual growth, introspection",
+      "source_row": 84
+     },
+     {
+      "life_path": 6,
+      "p1_start": 0,
+      "p1_end": 30,
+      "p2_start": 31,
+      "p2_end": 57,
+      "p3_raw": "58+",
+      "significance": "Love, family, service",
+      "source_row": 86
+     },
+     {
+      "life_path": 5,
+      "p1_start": 0,
+      "p1_end": 31,
+      "p2_start": 32,
+      "p2_end": 58,
+      "p3_raw": "59+",
+      "significance": "Change, freedom",
+      "source_row": 88
+     },
+     {
+      "life_path": 4,
+      "p1_start": 0,
+      "p1_end": 23,
+      "p2_start": 24,
+      "p2_end": 59,
+      "p3_raw": "60+",
+      "significance": "Hard work, stability",
+      "source_row": 90
+     },
+     {
+      "life_path": 3,
+      "p1_start": 0,
+      "p1_end": 24,
+      "p2_start": 25,
+      "p2_end": "51`",
+      "p3_raw": "52+",
+      "significance": "Creativity, communication",
+      "source_row": 92
+     },
+     {
+      "life_path": 2,
+      "p1_start": 0,
+      "p1_end": 25,
+      "p2_start": 26,
+      "p2_end": 52,
+      "p3_raw": "53+",
+      "significance": "Cooperation, sensitivity",
+      "source_row": 94
+     },
+     {
+      "life_path": 1,
+      "p1_start": 0,
+      "p1_end": 26,
+      "p2_start": 27,
+      "p2_end": 53,
+      "p3_raw": "54+",
+      "significance": "Independence, leadership",
+      "source_row": 96
+     }
+    ]
+   },
+   "pinnacle_table": {
+    "title": "Pinnacle Number",
+    "headers": [
+     "1st Pinnacle Cycle",
+     "2nd Pinnacle Cycle",
+     "3rd Pinnacle Cycle",
+     "4th Pinnacle Cycle"
+    ],
+    "season_notes": [
+     "Sping of Life: Development of Character",
+     "Raising of Family & Responsibility: Summer of Life",
+     "Autumn of Life : Middle Age & Maturity",
+     "Winter of life: Slow Down & End of Life"
+    ],
+    "basis": [
+     "Month &  Day of Birth",
+     "Day & Year of Birth",
+     "Year of Birth - Reduce",
+     "Year of Birth - Reduce"
+    ],
+    "lp_header": "Life Path Number",
+    "sig_header": "Significance of Number",
+    "rows": [
+     {
+      "life_path": 1,
+      "p1_start": 0,
+      "p1_end": 35,
+      "p2_start": 36,
+      "p2_end": 44,
+      "p3_start": 45,
+      "p3_end": 53,
+      "p4_start": "54+",
+      "significance": "Leadership & New Beginning",
+      "source_row": 106
+     },
+     {
+      "life_path": "2 & 11",
+      "p1_start": 0,
+      "p1_end": 34,
+      "p2_start": 35,
+      "p2_end": 43,
+      "p3_start": 44,
+      "p3_end": 52,
+      "p4_start": "53+",
+      "significance": "Co-Operation and Patience",
+      "source_row": 108
+     },
+     {
+      "life_path": 3,
+      "p1_start": 0,
+      "p1_end": 33,
+      "p2_start": 34,
+      "p2_end": 42,
+      "p3_start": 43,
+      "p3_end": 51,
+      "p4_start": "52+",
+      "significance": "Creativity & Expression",
+      "source_row": 110
+     },
+     {
+      "life_path": "4 & 22",
+      "p1_start": 0,
+      "p1_end": 32,
+      "p2_start": 33,
+      "p2_end": 41,
+      "p3_start": 42,
+      "p3_end": 50,
+      "p4_start": "51+",
+      "significance": "Discipline & Foundation",
+      "source_row": 112
+     },
+     {
+      "life_path": 5,
+      "p1_start": 0,
+      "p1_end": 31,
+      "p2_start": 32,
+      "p2_end": 40,
+      "p3_start": 41,
+      "p3_end": 49,
+      "p4_start": "50+",
+      "significance": "Freedom , Travel & Change",
+      "source_row": 114
+     },
+     {
+      "life_path": 6,
+      "p1_start": 0,
+      "p1_end": 30,
+      "p2_start": 31,
+      "p2_end": 39,
+      "p3_start": 40,
+      "p3_end": 48,
+      "p4_start": "49+",
+      "significance": "Responsibility & Family",
+      "source_row": 116
+     },
+     {
+      "life_path": 7,
+      "p1_start": 0,
+      "p1_end": 29,
+      "p2_start": 30,
+      "p2_end": 38,
+      "p3_start": 39,
+      "p3_end": 47,
+      "p4_start": "48+",
+      "significance": "Spiritual Growth & Study",
+      "source_row": 118
+     },
+     {
+      "life_path": 8,
+      "p1_start": 0,
+      "p1_end": 28,
+      "p2_start": 29,
+      "p2_end": 37,
+      "p3_start": 38,
+      "p3_end": 46,
+      "p4_start": "47+",
+      "significance": "Power, Success, Finance",
+      "source_row": 120
+     },
+     {
+      "life_path": 9,
+      "p1_start": 0,
+      "p1_end": 27,
+      "p2_start": 28,
+      "p2_end": 36,
+      "p3_start": 37,
+      "p3_end": 45,
+      "p4_start": "46+",
+      "significance": "Completion, Compassion",
+      "source_row": 122
+     }
+    ]
+   },
+   "challenge_themes": {
+    "0": "No major obstacle / spiritual protection",
+    "1": "Self-confidence, leadership",
+    "2": "Sensitivity, patience",
+    "3": "Communication, self-expression",
+    "4": "Discipline, routine",
+    "5": "Restlessness, excess",
+    "6": "Responsibility, boundaries",
+    "7": "Trust, faith",
+    "8": "Power, material balance"
+   },
+   "essence_example": {
+    "name": "Devendra Prasad",
+    "essence_title": "Essence Number",
+    "dob": "1970-08-04",
+    "headers": [
+     "Year",
+     "Age",
+     "1st Name",
+     "Number",
+     "M. Name",
+     "Number",
+     "L. Name",
+     "Number",
+     "Essence"
+    ],
+    "rows": [
+     {
+      "year": 1970,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "V",
+      "first_value": 4,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "V",
+      "first_value": 4,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "V",
+      "first_value": 4,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "V",
+      "first_value": 4,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "A",
+      "last_value": 1
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "S",
+      "last_value": 1
+     },
+     {
+      "year": null,
+      "first_letter": "N",
+      "first_value": 5,
+      "last_letter": "A",
+      "last_value": 1
+     },
+     {
+      "year": null,
+      "first_letter": "N",
+      "first_value": 5,
+      "last_letter": "D",
+      "last_value": 4
+     },
+     {
+      "year": null,
+      "first_letter": "N",
+      "first_value": 5,
+      "last_letter": "D",
+      "last_value": 4
+     },
+     {
+      "year": null,
+      "first_letter": "N",
+      "first_value": 5,
+      "last_letter": "D",
+      "last_value": 4
+     },
+     {
+      "year": null,
+      "first_letter": "N",
+      "first_value": 5,
+      "last_letter": "D",
+      "last_value": 4
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "A",
+      "first_value": 1,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "A",
+      "last_value": 1
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "S",
+      "last_value": 1
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "A",
+      "last_value": 1
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "D",
+      "last_value": 4
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "D",
+      "last_value": 4
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "D",
+      "last_value": 4
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "D",
+      "last_value": 4
+     },
+     {
+      "year": null,
+      "first_letter": "V",
+      "first_value": 4,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "V",
+      "first_value": 4,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "V",
+      "first_value": 4,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "V",
+      "first_value": 4,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "E",
+      "first_value": 5,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "N",
+      "first_value": 5,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "N",
+      "first_value": 5,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "N",
+      "first_value": 5,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "N",
+      "first_value": 5,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "N",
+      "first_value": 5,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "R",
+      "last_value": 9
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "A",
+      "last_value": 1
+     },
+     {
+      "year": null,
+      "first_letter": "D",
+      "first_value": 4,
+      "last_letter": "S",
+      "last_value": 1
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "A",
+      "last_value": 1
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "D",
+      "last_value": 4
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "D",
+      "last_value": 4
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "D",
+      "last_value": 4
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "D",
+      "last_value": 4
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "R",
+      "first_value": 9,
+      "last_letter": "P",
+      "last_value": 7
+     },
+     {
+      "year": null,
+      "first_letter": "A",
+      "first_value": 1,
+      "last_letter": "P",
+      "last_value": 7
+     }
+    ]
+   },
+   "transit_letters": {
+    "headers": [
+     "Transit Number",
+     "Tansit Letters",
+     "Significance"
+    ],
+    "rows": [
+     {
+      "number_label": "Number 1",
+      "letters": "A, J, S",
+      "significance": "Beginning, Career Change , New Projects and  indecisive behavior"
+     },
+     {
+      "number_label": "Number 2",
+      "letters": "B, k, T",
+      "significance": "Team work, Partnership and New Relationship. Possibility of Falling in Love"
+     },
+     {
+      "number_label": "Number 3",
+      "letters": "C, L and U",
+      "significance": "Social Activity, Fun and Creativity; Money Problem and Strained home Life are possible"
+     },
+     {
+      "number_label": "Number 4",
+      "letters": "D, M and V",
+      "significance": "Hard work, Responsibility and outstanding achievement"
+     },
+     {
+      "number_label": "Number 5",
+      "letters": "E, N and W",
+      "significance": "Change, Adventure, Travel. Meeting new people and seeing old loves. Interest would have constant change.\nUnstable Finance"
+     },
+     {
+      "number_label": "Number 6",
+      "letters": "F, O and X",
+      "significance": "Marriage, Family, Responsibility,romance and sense of calm"
+     },
+     {
+      "number_label": "Number 7",
+      "letters": "G, P, and Y",
+      "significance": "Sol;itude, Study,Contemplation, Introspection and spirituality"
+     },
+     {
+      "number_label": "Number 8",
+      "letters": "H, Q and Z",
+      "significance": "Independence, Prosperity, you are attracted to unusal business deals and risk that pays off"
+     },
+     {
+      "number_label": "Number 9",
+      "letters": "I and R",
+      "significance": "Emotional Time of Potential Difficulties,Sensitive and Vulnerable. Service and Compassion"
+     }
+    ]
+   }
+  }
+ }
+}

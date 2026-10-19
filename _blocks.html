@@ -1,0 +1,9 @@
+{% macro blocks(list) %}
+  {% for b in list %}
+    <div class="blk">
+      {% if b.label %}<h3>{{ b.label }}</h3>{% endif %}
+      {% if b.text %}<div class="rich">{{ b.text | rich }}</div>{% endif %}
+      {% if b.bullets %}<ul>{% for item in b.bullets %}<li>{{ item }}</li>{% endfor %}</ul>{% endif %}
+    </div>
+  {% endfor %}
+{% endmacro %}

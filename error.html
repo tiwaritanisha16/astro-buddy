@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} — {{ site_name }}{% endblock %}
+{% block content %}
+<section class="section"><div class="narrow center" style="max-width:560px">
+  <div class="card"><img src="{{ url_for('static', filename='img/constellation.svg') }}" alt="" style="max-width:220px;margin:0 auto 1rem">
+    <h1 style="font-size:2.2rem">{{ title }}</h1><p style="color:var(--muted)">{{ message }}</p>
+    <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap"><a class="btn btn-primary" href="{{ url_for('index') }}">Back to Home</a><a class="btn btn-outline" href="{{ url_for('reading_form') }}">Get My Reading</a></div></div>
+</div></section>
+{% endblock %}

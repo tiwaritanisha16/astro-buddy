@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Core Numbers Calculator — Numerology | {{ site_name }}{% endblock %}
+{% block desc %}Calculate Life Path, Destiny, Soul Urge, Personality, Maturity, pinnacles, challenges and personal cycles with every step shown.{% endblock %}
+{% macro card(key, title, value, steps, extra='') %}
+<article class="card core paper reveal"><span class="num-label">{{ title }}</span><div class="v">{{ value }}</div>
+  {% if about[key] and about[key].describes %}<p class="what">{{ about[key].describes.split('\n')[0] | replace('1. ', '') }}</p>{% endif %}
+  {{ extra }}
+  <details><summary>Show the calculation</summary><ul>{% for s in steps %}<li>{{ s }}</li>{% endfor %}</ul></details></article>
+{% endmacro %}
+{% block content %}
+<section class="page-head sky"><div class="glow g1"></div><div class="wrap"><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / <a href="{{ url_for('numerology') }}">Numerology</a> / Core numbers</p>
+  <h1>Core Numbers Calculator</h1><p class="lead">Enter your full name and date of birth. Every result shows how it was calculated. Nothing you type here is saved.</p></div></section>
+
+<section class="section" style="padding-top:2.5rem"><div class="narrow">
+  <form class="card paper form-card" method="POST" action="{{ url_for('numerology_calculator') }}" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="fgrid">
+      <div class="field full"><label class="lbl" for="name">Full name <span class="req" aria-hidden="true">*</span></label>
+        <input type="text" id="name" name="name" maxlength="80" autocomplete="name" placeholder="As on your birth record, in English letters" value="{{ form.get('name','') }}" required>
+        <small class="src">The letter tables are for A–Z. Include first and last name for the essence number.</small></div>
+      <div class="field"><label class="lbl" for="dob">Date of birth <span class="req" aria-hidden="true">*</span></label>
+        <input type="date" id="dob" name="dob" min="1900-01-01" max="{{ today }}" value="{{ form.get('dob','') }}" required></div>
+      <div class="field"><label class="lbl" for="as_of">Calculate cycles for <small class="opt">(optional, default today)</small></label>
+        <input type="date" id="as_of" name="as_of" min="1900-01-01" max="2100-12-31" value="{{ form.get('as_of','') }}"></div>
+      <div class="field full"><span class="lbl" id="sysLbl">Letter system for name numbers</span>
+        <div class="pills" role="radiogroup" aria-labelledby="sysLbl">
+          {% for k, v in systems.items() %}<label class="pill sys"><input type="radio" name="system" value="{{ k }}" {% if form.get('system','pythagorean') == k %}checked{% endif %}><span>{{ v }}</span></label>{% endfor %}
+        </div><small class="src">Pythagorean is used in the workbook's worked examples. Chaldean uses the workbook's own Chaldean table.</small></div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top:1.2rem">Calculate My Numbers</button>
+  </form>
+</div></section>
+
+{% if result %}
+{% set r = result %}
+<section class="section alt" style="padding-top:3rem"><div class="wrap">
+  <div class="sec-head reveal"><p class="eyebrow">Results for {{ name }}</p><h2>Your core numbers</h2><div class="divider"></div>
+    <p class="lead">Born {{ r.dob.strftime('%d %B %Y') }} · calculated for {{ r.today.strftime('%d %B %Y') }} (age {{ r.age }}) · {{ r.system_label }} letter values.</p></div>
+
+  <h3 class="reveal">From your date of birth</h3>
+  <div class="core-grid">
+    {{ card('life_path', 'Life Path Number (Bhagyank)', nc.shown(r.life_path.value), r.life_path.steps) }}
+    {{ card('birthday', 'Birthday Number', r.birthday.value ~ ' (' ~ r.birthday.reduced ~ ')', r.birthday.steps) }}
+    {{ card('', 'Moolank (Mulank)', r.mulank.value, ['Day of birth ' ~ r.dob.day ~ (' → ' ~ r.mulank.value if r.dob.day > 9 else ''), 'Compound number: ' ~ (r.mulank.compound ~ '/' ~ r.mulank.value if r.mulank.compound else 'none (single-digit day)')]) }}
+    {{ card('', 'Attitude Number', r.attitude.value, r.attitude.steps) }}
+    {{ card('karmic', 'Karmic Number', (r.karmic.value ~ ' present') if r.karmic.value else 'None', r.karmic.steps) }}
+  </div>
+  {% if r.relation %}<p class="note-box reveal" style="margin-top:1rem">Birthday number {{ r.birthday.reduced }} with Life Path {{ nc.shown(r.life_path.value) }}:
+    {% if r.relation.named %}the workbook lists this pair as <strong>{{ r.relation.named|join(', ') }}</strong>.{% else %}this pair is not in the workbook's named lists.{% endif %}
+    {% if r.relation.matrix_symbol %}Its combination-matrix symbol is “{{ r.relation.matrix_symbol }}”.{% endif %}
+    <span class="src">(The workbook does not explain the matrix symbols; see the Number Guide.)</span></p>{% endif %}
+
+  <h3 class="reveal" style="margin-top:2.2rem">From your name</h3>
+  <div class="core-grid">
+    {{ card('destiny', 'Destiny / Expression Number', nc.shown(r.destiny.value), r.destiny.steps) }}
+    {{ card('soul', 'Soul Urge Number', nc.shown(r.soul.value), r.soul.steps) }}
+    {{ card('personality', 'Personality Number', nc.shown(r.personality.value), r.personality.steps) }}
+    {{ card('growth', 'Growth Number', nc.shown(r.growth.value), r.growth.steps) }}
+    {{ card('habit', 'Habit Challenge Number', r.habit.value, r.habit.steps) }}
+    {{ card('maturity', 'Maturity Number', nc.shown(r.maturity.value), r.maturity.steps) }}
+  </div>
+  <div class="card paper reveal" style="margin-top:1rem"><h3>Intensified and Absent numbers</h3>
+    <p class="what" style="color:var(--muted)">How often each number 1–9 appears in your name (Pythagorean values).</p>
+    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Number</th>{% for n in range(1,10) %}<th>{{ n }}</th>{% endfor %}</tr></thead>
+      <tbody><tr><td>Times in name</td>{% for n in range(1,10) %}<td class="num {{ 'cur' if n in r.intensified.intensified }}">{{ r.intensified.freq[n] }}</td>{% endfor %}</tr></tbody></table></div>
+    <p style="margin-top:.8rem"><strong>Intensified:</strong> {{ r.intensified.intensified|join(', ') or 'none' }} (most frequent{% if r.intensified.intensified|length > 2 %}; several numbers tie{% endif %}). <strong>Absent:</strong> {{ r.intensified.absent|join(', ') or 'none' }}.</p></div>
+
+  <h3 class="reveal" style="margin-top:2.2rem">Your cycles for {{ r.today.strftime('%d %B %Y') }}</h3>
+  <div class="core-grid">
+    {% for k, t in (('personal_year','Personal Year'),('personal_month','Personal Month'),('personal_day','Personal Day'),('universal_year','Universal Year'),('universal_month','Universal Month'),('universal_day','Universal Day')) %}
+    {{ card(k if k.startswith('personal') else '', t, r.cycles[k].value, r.cycles[k].steps) }}{% endfor %}
+  </div>
+
+  <h3 class="reveal" style="margin-top:2.2rem">Pinnacles and challenges</h3>
+  <div class="grid g2">
+    <div class="card paper reveal"><h3>Pinnacle numbers</h3><div class="tbl-wrap"><table class="tbl"><thead><tr><th>#</th><th>Number</th><th>Ages</th><th>Meaning</th></tr></thead><tbody>
+      {% for p in r.pinnacles %}<tr class="{{ 'cur' if p.current }}"><td>{{ p.index }}</td><td class="num">{{ nc.shown(p.value) }}</td><td>{{ p.age_text }}{% if p.current %} · <strong>now</strong>{% endif %}</td><td>{{ p.meaning }}<br><span class="src">{{ p.basis }}</span></td></tr>{% endfor %}</tbody></table></div></div>
+    <div class="card paper reveal d2"><h3>Challenge numbers</h3><div class="tbl-wrap"><table class="tbl"><thead><tr><th>#</th><th>Number</th><th>Ages</th><th>Theme</th></tr></thead><tbody>
+      {% for c in r.challenges %}<tr class="{{ 'cur' if c.current }}"><td>{{ c.index }}</td><td class="num">{{ c.value }}</td><td>{{ c.age_text }}{% if c.current %} · <strong>now</strong>{% endif %}</td><td>{{ c.theme }}<br><span class="src">{{ c.basis }}</span></td></tr>{% endfor %}</tbody></table></div></div>
+  </div>
+  {% set lpd = r.life_period %}
+  <div class="card paper reveal" style="margin-top:1rem"><h3>Life Path periods</h3>
+    <p class="what" style="color:var(--muted)">Three phases built from your birth month, day and year. Ages are as printed in the workbook's life-period table for Life Path {{ nc.base_digit(r.life_path.value) }}.</p>
+    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Period</th><th>Number</th><th>Ages</th></tr></thead><tbody>
+      <tr><td>1st · Birth &amp; adulthood (month)</td><td class="num">{{ lpd.month_number }}</td><td>{{ lpd.row.p1_start }}–{{ lpd.row.p1_end }}</td></tr>
+      <tr><td>2nd · Productive time of life (day)</td><td class="num">{{ lpd.day_number }}</td><td>{{ lpd.row.p2_start }}–{{ lpd.row.p2_end }}</td></tr>
+      <tr><td>3rd · Knowledge &amp; wisdom (year)</td><td class="num">{{ lpd.year_number }}</td><td>{{ lpd.row.p3_raw }}</td></tr></tbody></table></div>
+    <p style="margin-top:.7rem">Theme for Life Path {{ nc.base_digit(r.life_path.value) }}: <strong>{{ lpd.row.significance }}</strong>.</p></div>
+
+  {% if r.essence[0] %}
+  <h3 class="reveal" style="margin-top:2.2rem">Essence and transit letters</h3>
+  <div class="grid g2">
+    <div class="card paper reveal"><h3>Essence Number</h3><p class="what" style="color:var(--muted)">Each letter of your first and last name is active for as many years as its value. The two active letters add up to that year's essence.</p>
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Year</th><th>Age</th><th>First name</th><th>Last name</th><th>Essence</th></tr></thead><tbody>
+        {% for e in r.essence if e %}<tr class="{{ 'cur' if loop.first }}"><td>{{ e.year }}</td><td>{{ e.age }}</td><td>{{ e.first_letter }} = {{ e.first_value }}</td><td>{{ e.last_letter }} = {{ e.last_value }}</td><td class="num">{{ e.total }} → {{ e.value }}</td></tr>{% endfor %}</tbody></table></div></div>
+    <div class="card paper reveal d2"><h3>Transit letters this year</h3>
+      {% for t in r.transit %}<p><strong>{{ t.letter }}</strong> (number {{ t.number }}): {{ t.meaning }}</p>{% endfor %}</div>
+  </div>
+  {% else %}<p class="note-box" style="margin-top:2rem">The essence number needs both a first and a last name.</p>{% endif %}
+
+  <p class="src center" style="margin-top:2rem">Results follow the Numerology Numbers &amp; Formulas workbook. Numerology is a traditional system for reflection, not a prediction. <a href="{{ url_for('numerology_guide') }}">See the Number Guide</a> for formulas and notes on the source.</p>
+</div></section>
+{% endif %}
+{% endblock %}

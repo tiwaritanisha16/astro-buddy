@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Vastu Meter — Check Your Home | {{ site_name }}{% endblock %}
+{% block desc %}Choose the direction of each room in your home and see its Vastu rating and an overall score.{% endblock %}
+{% block content %}
+<section class="page-head sky"><div class="glow g1"></div><div class="wrap"><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / <a href="{{ url_for('vastu') }}">Vastu</a> / Vastu Meter</p>
+  <h1>Vastu Meter</h1><p class="lead">Choose where each room sits in your home. Leave a room blank if you do not have it. Nothing you choose is stored.</p></div></section>
+
+<section class="section" style="padding-top:2.5rem"><div class="narrow">
+{% if result %}
+  <div class="card paper meter-score reveal" id="result" style="margin-bottom:1.5rem">
+    <p class="num-label">Your Vastu Meter</p>
+    {% if result.average is not none %}
+    <div class="big">{{ result.average }}<span style="font-size:1.6rem;color:var(--muted)"> / 10</span></div>
+    <div class="bar" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ result.percent }}" aria-label="Vastu meter {{ result.percent }} percent"><i style="width:{{ result.percent }}%"></i></div>
+    <p class="src">Average of the workbook scores for the {{ result.rows|length }} room{{ 's' if result.rows|length != 1 }} you entered. This average is a summary added by the website.</p>
+    {% else %}<p>None of the rooms you chose has a rating in the workbook.</p>{% endif %}
+    {% if result.rows %}
+    <div class="tbl-wrap" style="text-align:left;margin-top:1rem"><table class="tbl"><thead><tr><th>Room</th><th>Direction</th><th>Rating</th><th>Score</th><th>Best direction(s)</th></tr></thead><tbody>
+      {% for r in result.rows %}<tr><td><a href="{{ url_for('vastu_element', slug=r.slug) }}">{{ r.name }}</a></td><td>{{ r.direction_name }}</td><td><span class="badge t-{{ r.tone }}">{{ r.label }}</span></td><td class="num">{{ r.score }}</td>
+        <td>{% for d in r.best_dirs %}{{ dirs[d] }}{{ ', ' if not loop.last }}{% endfor %} ({{ r.best_score }})</td></tr>{% endfor %}</tbody></table></div>{% endif %}
+    {% if result.unrated %}<p class="note-box" style="margin-top:1rem;text-align:left">{{ result.unrated|join(', ') }}: the centre (Brahmasthan) has no rating in the workbook, so it is left out of the score.</p>{% endif %}
+    <p class="src" style="margin-top:1rem">Vastu is a traditional system. These ratings are general guidance and do not guarantee any outcome.</p>
+  </div>
+{% endif %}
+
+<form class="card paper form-card" method="GET" action="{{ url_for('vastu_meter') }}">
+  <input type="hidden" name="go" value="1">
+  {% for title, items in groups %}
+  <details class="group" {% if loop.first or (picks and items|selectattr('slug', 'in', picks)|list) %}open{% endif %}><summary>{{ title }}</summary><div class="in">
+    {% for e in items %}
+    <div class="room-row"><label for="r-{{ e.slug }}">{{ e.name }}</label>
+      <select id="r-{{ e.slug }}" name="{{ e.slug }}"><option value="">Not in my home</option>
+        {% for d in rated %}<option value="{{ d }}" {% if picks.get(e.slug) == d %}selected{% endif %}>{{ dirs[d] }} ({{ d }})</option>{% endfor %}
+        <option value="BR" {% if picks.get(e.slug) == 'BR' %}selected{% endif %}>Centre (Brahmasthan)</option></select></div>
+    {% endfor %}</div></details>
+  {% endfor %}
+  <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top:1rem">Calculate My Vastu Meter</button>
+</form>
+</div></section>
+{% endblock %}

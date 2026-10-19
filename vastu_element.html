@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% from "_compass.html" import compass %}
+{% block title %}{{ g.element.name }} — Vastu Directions | {{ site_name }}{% endblock %}
+{% block desc %}How each direction is rated for the {{ g.element.name }} in Vastu, with a colour-coded compass and table.{% endblock %}
+{% block content %}
+<section class="page-head sky"><div class="glow g1"></div><div class="wrap"><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / <a href="{{ url_for('vastu') }}">Vastu</a> / <a href="{{ url_for('vastu_guide') }}">Guide</a> / {{ g.element.name }}</p>
+  <h1>{{ g.element.name }}</h1><p class="lead">Which direction suits it best, and which least, according to the Vastu workbook.</p></div></section>
+<section class="section"><div class="wrap">
+  <div class="split">
+    <div class="card paper reveal">{{ compass(g) }}</div>
+    <div class="reveal d2">
+      <h2>At a glance</h2><div class="divider"></div>
+      <p><strong>Highest rated ({{ g.top }}/10):</strong> {% for c, d in g.best %}{{ d.direction_name }} ({{ d.label }}){{ ', ' if not loop.last }}{% endfor %}.</p>
+      <p><strong>Lowest rated ({{ g.low }}/10):</strong> {% for c, d in g.weakest %}{{ d.direction_name }} ({{ d.label }}){{ ', ' if not loop.last }}{% endfor %}.</p>
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Direction</th><th>Rating</th><th>Score</th></tr></thead><tbody>
+        {% for row in g.grid %}{% for c in row %}<tr><td>{{ dirs[c.code] }}</td><td>{{ c.label or 'Not rated in the workbook' }}</td><td class="num">{{ c.score if c.score is not none else '—' }}</td></tr>{% endfor %}{% endfor %}</tbody></table></div>
+      <p class="src">Source: Vastu_Meter_ContentV1.xls, sheet “{{ g.element.sheet }}”, from cell {{ g.element.title_cell }}.</p>
+      <p style="margin-top:1rem"><a href="{{ url_for('vastu_element', slug=prev.slug) }}">← {{ prev.name }}</a> &nbsp;·&nbsp; <a href="{{ url_for('vastu_element', slug=nxt.slug) }}">{{ nxt.name }} →</a></p>
+    </div>
+  </div>
+</div></section>
+{% endblock %}

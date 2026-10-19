@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Unlock Your Reading — {{ site_name }}{% endblock %}
+{% block content %}
+<section class="page-head sky"><div class="wrap"><h1>Open your complete reading</h1><p class="lead">One step away from the full report.</p></div></section>
+<section class="section" style="padding-top:2.5rem"><div class="narrow" style="max-width:620px">
+  <div class="card">
+    <div class="pay-row"><span>Reading for</span><strong>{{ reading.name }}</strong></div>
+    <div class="pay-row"><span>Moolank / Bhagyank</span><strong>{{ reading.moolank }} / {{ reading.bhagyank }}</strong></div>
+    <div class="pay-row"><span>Complete personal reading</span><strong>₹{{ price }}</strong></div>
+    <div style="margin-top:1.2rem">
+    {% if razorpay_ready %}
+      <button class="btn btn-primary btn-lg btn-block" id="rzpBtn" data-create="{{ url_for('create_order', reading_id=reading.id) }}" data-verify="{{ url_for('verify_payment', reading_id=reading.id) }}">Pay ₹{{ price }} securely</button>
+      <p class="pay-error" id="payError" hidden></p>
+      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    {% endif %}
+    {% if demo_enabled %}
+      <div class="demo-box"><span class="demo-badge">DEMO PAYMENT</span>
+        <p>This is a <strong>demo / testing payment</strong>. No money is charged and no payment is processed. It only unlocks the report so the flow can be tested.</p>
+        <a class="btn {{ 'btn-outline' if razorpay_ready else 'btn-primary' }} btn-block" href="{{ url_for('demo_payment', reading_id=reading.id) }}">Simulate demo payment</a></div>
+    {% endif %}
+    {% if not razorpay_ready and not demo_enabled %}<p class="center" style="color:var(--muted)">Payments are not available right now. Please come back soon.</p>{% endif %}
+    </div>
+  </div>
+  <p class="center" style="margin-top:1rem"><a href="{{ url_for('preview', reading_id=reading.id) }}">← Back to preview</a></p>
+</div></section>
+{% endblock %}

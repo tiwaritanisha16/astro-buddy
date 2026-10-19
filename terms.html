@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Terms & Conditions — {{ site_name }}{% endblock %}
+{% block desc %}Terms for using {{ site_name }}: reflective readings, optional AI photo processing and payments.{% endblock %}
+{% block content %}
+<section class="page-head sky"><div class="wrap"><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / Terms</p><h1>Terms &amp; Conditions</h1></div></section>
+<section class="section legal"><div class="narrow">
+  <h2>1. Purpose of the readings</h2>
+  <p>Readings and Vastu ratings are provided for reflection and general guidance. Numerology, Vastu, palmistry, face reading and mole reading are traditional practices and are not scientifically validated. Nothing on this website is a guaranteed prediction.</p>
+  <h2>2. Not professional advice</h2>
+  <p>Vastu ratings and numerology results are general traditional guidance and do not guarantee health, wealth, relationship or career outcomes. Nothing here is medical, legal, financial, psychological or relationship advice. Do not make important decisions based only on a reading. Speak to a qualified professional instead.</p>
+  <h2>3. Optional photos and AI</h2>
+  <ul><li>Photos are optional. You may upload only a face photo, only a palm photo, both or neither.</li>
+    <li>Only upload photos of yourself that you are entitled to share. Do not upload images of other people without their permission, or any unlawful content.</li>
+    <li>If you upload a photo you must tick the consent box. The photo may then be processed by Google Gemini AI, as described in the <a href="{{ url_for('privacy') }}">Privacy Policy</a>.</li>
+    <li>AI-generated text may be inaccurate, incomplete or generic. We do not guarantee its correctness.</li></ul>
+  <h2>4. Payments</h2>
+  <p>{{ payment_note }}</p>
+  <h2>5. Your account and links</h2>
+  <p>There are no accounts. Anyone with your private reading link can view the reading. You are responsible for keeping it private.</p>
+  <h2>6. Human astrologer</h2>
+  <p>Consultations with astrologer Dev are offered separately from the automated tools on this website and have their own terms.</p>
+  <h2>7. Availability and changes</h2>
+  <p>The website is provided as is. AI features may be unavailable at times, in which case the numerology reading still works. These terms may be updated from time to time.</p>
+</div></section>
+{% endblock %}

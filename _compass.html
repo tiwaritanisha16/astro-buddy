@@ -1,0 +1,15 @@
+{% macro compass(g) %}
+<div class="compass" role="table" aria-label="Direction ratings for {{ g.element.name }}">
+  {% for row in g.grid %}{% for c in row %}
+  <div class="cell t-{{ c.tone }}" role="cell">
+    <span class="d">{{ 'Centre' if c.code == 'BR' else c.code }}</span>
+    {% if c.score is not none %}<span class="s">{{ c.score }}</span><span class="l">{{ c.label }}</span>
+    {% else %}<span class="l">Brahmasthan<br>not rated in source</span>{% endif %}
+  </div>
+  {% endfor %}{% endfor %}
+</div>
+<div class="legend" aria-hidden="true">
+  <span class="t-great">9–10</span><span class="t-good">7–8</span><span class="t-mid">5–6</span><span class="t-low">1–4</span>
+</div>
+<p class="compass-note">North is at the top. Scores are the workbook's own (1–10); colours only group them.</p>
+{% endmacro %}

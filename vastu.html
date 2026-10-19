@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% from "_compass.html" import compass %}
+{% block title %}Vastu — Direction Guide & Vastu Meter | {{ site_name }}{% endblock %}
+{% block desc %}See how {{ count }} rooms and elements are rated in each direction and calculate an overall Vastu Meter for your home.{% endblock %}
+{% block content %}
+<section class="page-head sky"><div class="glow g1"></div>
+  <div class="wrap photo-head">
+    <div><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / Vastu</p><span class="tag">Vastu</span><h1 style="margin-top:.6rem">Place your rooms well</h1>
+      <p class="lead">Vastu looks at where each room sits within the eight directions of a home. See how {{ count }} rooms and elements are rated, then check your own layout.</p></div>
+    <img src="{{ url_for('static', filename='img/photos/ritual-chart.jpg') }}" alt="A circular chart with gemstones and candles beneath a ringed planet" width="988" height="1600">
+  </div>
+</section>
+
+<section class="section"><div class="wrap">
+  <div class="grid g2">
+    <a class="card hover tool-card reveal d1" href="{{ url_for('vastu_meter') }}"><div class="icon-badge gold">⌖</div><span class="tag">Tool</span><h3 style="margin-top:.5rem">Vastu Meter</h3>
+      <p>Choose the direction of each room in your home. You get its rating from the workbook and an overall score.</p><span class="go">Check my home →</span></a>
+    <a class="card hover tool-card reveal d2" href="{{ url_for('vastu_guide') }}"><div class="icon-badge">⌘</div><span class="tag">Guide</span><h3 style="margin-top:.5rem">Room-by-Room Guide</h3>
+      <p>For each of {{ count }} rooms and elements, see all eight directions on a colour-coded compass.</p><span class="go">Browse the rooms →</span></a>
+  </div>
+</div></section>
+
+<section class="section alt"><div class="wrap split">
+  <div class="reveal"><p class="eyebrow">How to read it</p><h2>Eight directions, one score each</h2><div class="divider"></div>
+    <p>For every room the workbook gives a rating such as <em>Highly Auspicious</em>, <em>Auspicious</em>, <em>Can Be Better</em> or <em>Inauspicious</em>, plus a score from 1 to 10, for each of the eight directions: North, North-East, East, South-East, South, South-West, West and North-West.</p>
+    <p>The centre of the home, the Brahmasthan, is named in the workbook but has no rating, so it is shown as not rated.</p>
+    <p>The overall Vastu Meter is the average of the scores for the rooms you enter. It is a simple summary added by this website, and is not a rule from the workbook.</p></div>
+  <div class="card reveal d2"><p class="num-label" style="text-align:center">Example: Main Door</p>{{ compass(sample) }}</div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="sec-head reveal"><p class="eyebrow">Rooms and elements</p><h2>What is covered</h2><div class="divider"></div></div>
+  {% for title, items in groups %}<div class="reveal" style="margin-bottom:1.4rem"><h3 style="font-size:1.25rem">{{ title }}</h3>
+    <div class="chips">{% for e in items %}<a href="{{ url_for('vastu_element', slug=e.slug) }}">{{ e.name }}</a>{% endfor %}</div></div>{% endfor %}
+  <p class="src">Source: Vastu_Meter_ContentV1.xls, sheets “vastucheck”, “utecbyultratech” and “Additional”. Grouping is for browsing only.</p>
+</div></section>
+{% endblock %}

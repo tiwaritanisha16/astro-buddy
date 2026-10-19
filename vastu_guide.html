@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Vastu Room-by-Room Guide | {{ site_name }}{% endblock %}
+{% block desc %}Direction ratings for every room and element, from main door and kitchen to pooja room and staircase.{% endblock %}
+{% block content %}
+<section class="page-head sky"><div class="glow g1"></div><div class="wrap"><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / <a href="{{ url_for('vastu') }}">Vastu</a> / Room-by-room guide</p>
+  <h1>Room-by-Room Guide</h1><p class="lead">Choose a room to see how each direction is rated.</p></div></section>
+<section class="section"><div class="wrap">
+  {% for title, items in groups %}
+  <div class="reveal" style="margin-bottom:2.2rem"><h2 style="font-size:1.7rem">{{ title }}</h2>
+    <div class="grid g4">{% for e in items %}<a class="card hover tool-card" href="{{ url_for('vastu_element', slug=e.slug) }}" style="padding:1.1rem"><h3 style="font-size:1.15rem;margin:0">{{ e.name }}</h3><span class="go" style="margin-top:.4rem">See directions →</span></a>{% endfor %}</div></div>
+  {% endfor %}
+</div></section>
+{% endblock %}

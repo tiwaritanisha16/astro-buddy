@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}FAQ — {{ site_name }}{% endblock %}
+{% block desc %}Answers about photos, Gemini AI, Moolank and Bhagyank calculations, privacy and contacting a human astrologer.{% endblock %}
+{% block content %}
+<section class="page-head sky"><div class="wrap"><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / FAQ</p><h1>Frequently asked questions</h1></div></section>
+<section class="section"><div class="narrow">
+  {% for q, a in faqs %}<details class="faq reveal"><summary>{{ q }}</summary><div class="ans">{{ a }}</div></details>{% endfor %}
+  <div style="margin-top:2.5rem">{% include "_astro.html" %}</div>
+</div></section>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ site_name }} — Numerology & Vastu Shastra{% endblock %}
+{% block desc %}Choose Numerology for a personal reading from your name and date of birth, or Vastu Shastra for direction guidance for the rooms of your home.{% endblock %}
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block content %}
+<section class="landing sky">
+  <div class="glow g1"></div><div class="glow g2"></div>
+  <div class="wrap landing-wrap">
+    <div class="landing-intro fade-in">
+      <div class="landing-brand">
+        <img src="{{ url_for('static', filename='img/logo-mark.svg') }}" alt="" width="64" height="64">
+        <h1 class="wordmark">{{ brand_parts[0] }}<b>{{ brand_parts[1] }}</b></h1>
+        <p class="landing-tagline">Numerology · Vastu Shastra</p>
+      </div>
+      <p class="lead">Two traditional sciences, explained clearly. Choose where you would like to begin.</p>
+    </div>
+
+    <div class="svc-grid">
+      <article class="svc fade-in">
+        <div class="svc-img"><img src="{{ url_for('static', filename='img/landing-numerology.jpg') }}" alt="A golden zodiac wheel with a glowing sun, beneath the moon and Saturn" width="1128" height="752" fetchpriority="high"></div>
+        <div class="svc-body">
+          <span class="svc-kicker">Know your numbers</span>
+          <h2>Numerology</h2>
+          <p>Your Moolank, Bhagyank and the themes of love, growth, career and wellbeing, calculated from your name and date of birth.</p>
+          <a class="btn btn-gold btn-lg btn-block" href="{{ url_for('numerology') }}">Explore Numerology</a>
+        </div>
+      </article>
+      <article class="svc fade-in">
+        <div class="svc-img"><img src="{{ url_for('static', filename='img/landing-vastu.jpg') }}" alt="A circular direction chart with gemstones and candles on parchment" width="988" height="658" fetchpriority="high"></div>
+        <div class="svc-body">
+          <span class="svc-kicker">Balance your home</span>
+          <h2>Vastu Shastra</h2>
+          <p>See how each room of your home is rated in the eight directions, and check your layout with the Vastu Meter.</p>
+          <a class="btn btn-gold btn-lg btn-block" href="{{ url_for('vastu') }}">Explore Vastu</a>
+        </div>
+      </article>
+    </div>
+    <p class="landing-note">Traditional systems for reflection and general guidance, not guarantees.</p>
+  </div>
+</section>
+{% endblock %}

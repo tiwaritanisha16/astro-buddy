@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Reading Categories — {{ site_name }}{% endblock %}
+{% block desc %}Explore the four reading categories: Love & Relationships, Personal Growth, Career & Professional Life and General Wellbeing.{% endblock %}
+{% block content %}
+{% set details = {
+ 'love': ['Traditional interpretation of relationships and marriage themes, compatibility numbers, communication reflection, strengths, challenges and practical suggestions.', 'Never a guarantee about a partner or a relationship outcome.'],
+ 'growth': ['Personality themes, strengths, areas to improve, self-reflection prompts and small actions you can take.', 'Not psychological assessment or therapy.'],
+ 'career': ['Traditional career themes, work-style reflection, skills to develop, learning and money-habit themes.', 'No promise about a job, salary or promotion.'],
+ 'wellbeing': ['General lifestyle reflection, routine ideas, stress-management suggestions and self-care prompts.', 'Not medical advice, diagnosis or prediction of illness.']} %}
+<section class="page-head sky"><div class="wrap"><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / Reading categories</p><h1>Reading categories</h1>
+  <p class="lead">Pick the areas you want to explore. You can choose one, several or all four.</p></div></section>
+<section class="section"><div class="wrap grid g2">
+  {% for key, title, icon, desc in categories_all %}
+  <article class="card hover cat-card reveal d{{ loop.index }}" id="{{ key }}"><div class="icon-badge {{ 'gold' if loop.index is even }}">{{ icon }}</div><h2 style="font-size:1.8rem">{{ title }}</h2>
+    <p>{{ details[key][0] }}</p><p class="note-box">{{ details[key][1] }}</p>
+    <a class="btn btn-outline btn-sm" href="{{ url_for('reading_form', cat=key) }}">Choose this category →</a></article>
+  {% endfor %}
+</div></section>
+{% endblock %}

@@ -1,0 +1,7 @@
+<div class="data-box no-print" style="margin-top:1.5rem"><strong>Your data.</strong>
+  {% if reading.face_image or reading.palm_image %}Your uploaded photo(s) are stored on this website’s server for up to {{ retention_days }} days.{% else %}No photos are stored for this reading.{% endif %}
+  You can delete them at any time.
+  <div style="margin-top:.7rem;display:flex;gap:.6rem;flex-wrap:wrap">
+    {% if reading.face_image or reading.palm_image %}<form method="POST" action="{{ url_for('delete_photos', reading_id=reading.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-outline btn-sm" type="submit">Delete my photos</button></form>{% endif %}
+    <form method="POST" action="{{ url_for('delete_reading', reading_id=reading.id) }}" onsubmit="return confirm('Delete this whole reading and any photos? This cannot be undone.');"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-danger btn-sm" type="submit">Delete this whole reading</button></form>
+  </div></div>

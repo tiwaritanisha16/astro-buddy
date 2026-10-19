@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Numerology — Readings, Core Numbers & Guide | {{ site_name }}{% endblock %}
+{% block desc %}Personal numerology readings and a core numbers calculator with every calculation step shown, based on traditional Indian and Pythagorean methods.{% endblock %}
+{% block content %}
+<section class="page-head sky"><div class="glow g1"></div>
+  <div class="wrap photo-head">
+    <div><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / Numerology</p><span class="tag">Numerology</span><h1 style="margin-top:.6rem">Know your numbers</h1>
+      <p class="lead">Your date of birth and your name each carry a pattern. Explore it as a personal reading, as a full set of core numbers, or through the guide behind the formulas.</p></div>
+    <img src="{{ url_for('static', filename='img/photos/zodiac-desk.jpg') }}" alt="Zodiac wheel with a glowing sun, an armillary sphere, a crystal ball and tarot cards" width="1128" height="1600">
+  </div>
+</section>
+
+<section class="section"><div class="wrap">
+  <div class="grid g3">
+    <a class="card hover tool-card reveal d1" href="{{ url_for('reading_form') }}"><div class="icon-badge">☉</div><span class="tag">Reading</span><h3 style="margin-top:.5rem">Personal Reading</h3>
+      <p>Moolank and Bhagyank with their calculation, a free preview, and a complete report on the topics you choose. Face and palm photos are optional.</p><span class="go">Start a reading →</span></a>
+    <a class="card hover tool-card reveal d2" href="{{ url_for('numerology_calculator') }}"><div class="icon-badge gold">∞</div><span class="tag">Calculator</span><h3 style="margin-top:.5rem">Core Numbers Calculator</h3>
+      <p>Life Path, Destiny, Soul Urge, Personality, Maturity, pinnacles, challenges, personal cycles and more. Nothing you type is stored.</p><span class="go">Open the calculator →</span></a>
+    <a class="card hover tool-card reveal d3" href="{{ url_for('numerology_guide') }}"><div class="icon-badge">✦</div><span class="tag">Guide</span><h3 style="margin-top:.5rem">Number Guide</h3>
+      <p>All 24 numerology numbers, the letter-value tables, master numbers and the worked examples.</p><span class="go">Read the guide →</span></a>
+  </div>
+</div></section>
+
+<section class="section alt"><div class="wrap">
+  <div class="sec-head reveal"><p class="eyebrow">The foundation</p><h2>Moolank and Bhagyank</h2><div class="divider"></div></div>
+  <div class="grid g2">
+    <div class="card reveal"><h3>Moolank (Mulank) — Birth Number</h3><p>Your day of birth reduced to one digit. Born on the 25th: 2 + 5 = <strong>7</strong>.</p></div>
+    <div class="card reveal d2"><h3>Bhagyank — Life Path Number</h3><p>Every digit of your full date of birth added, then reduced. 16/07/2002: 1+6+0+7+2+0+0+2 = 18 → 1+8 = <strong>9</strong>.</p></div>
+  </div>
+  <div class="sec-head reveal" style="margin-top:3rem"><h2 style="font-size:1.8rem">The nine numbers and their planets</h2></div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr))">
+    {% for n in numbers %}<div class="card num-tile reveal"><div class="n">{{ n.number }}</div><div class="p">{{ n.planet }}</div><strong style="color:var(--navy)">{{ n.title }}</strong><small>Lucky colours: {{ n.lucky_color }}<br>Lucky day: {{ n.lucky_day }}</small></div>{% endfor %}
+  </div>
+  <p class="src center" style="margin-top:1.2rem">Numerology is a traditional system for reflection. It is not a scientific prediction.</p>
+</div></section>
+{% endblock %}

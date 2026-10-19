@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}How It Works — {{ site_name }}{% endblock %}
+{% block desc %}How numerology and Vastu results are calculated on {{ site_name }}, what is free, and how optional photos are handled.{% endblock %}
+{% block content %}
+<section class="page-head sky"><div class="glow g1"></div><div class="wrap"><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / How it works</p><h1>How it works</h1>
+  <p class="lead">Two services, each with its own simple steps.</p></div></section>
+<section class="section"><div class="wrap">
+  <div class="grid g2">
+    <div class="card reveal"><span class="tag">Numerology</span><h2 style="font-size:1.8rem;margin-top:.6rem">Your numbers</h2>
+      <ol class="timeline" style="margin-top:1.2rem">
+        <li data-n="1"><h3>Enter your details</h3><p>Name and date of birth. Time and place of birth, and photos, are optional.</p></li>
+        <li data-n="2"><h3>Numbers are calculated</h3><p>Moolank is your birth day reduced to one digit. Bhagyank adds every digit of your date of birth. The calculator adds the name-based and cycle numbers.</p></li>
+        <li data-n="3"><h3>Read the free preview</h3><p>Your numbers with their working, a personality overview, strengths and challenges.</p></li>
+        <li data-n="4"><h3>Open the complete report</h3><p>Full guidance for the topics you chose, reflection prompts and a printable layout. {{ 'Payment is a demo on this installation.' if demo_payment else '' }}</p></li>
+      </ol></div>
+    <div class="card reveal d2"><span class="tag">Vastu</span><h2 style="font-size:1.8rem;margin-top:.6rem">Your rooms</h2>
+      <ol class="timeline" style="margin-top:1.2rem">
+        <li data-n="1"><h3>Pick your rooms</h3><p>In the Vastu Meter, choose the direction each room of your home sits in.</p></li>
+        <li data-n="2"><h3>Ratings are looked up</h3><p>Each room and direction has a rating and a score from 1 to 10 in the Vastu workbook.</p></li>
+        <li data-n="3"><h3>See your meter</h3><p>You get every rating, the best direction for each room, and the average score.</p></li>
+        <li data-n="4"><h3>Browse the guide</h3><p>The Room-by-Room Guide shows all eight directions for any room.</p></li>
+      </ol></div>
+  </div>
+  <div class="card reveal" style="margin-top:1.5rem"><h3>About optional photos</h3>
+    <p>In the Personal Reading you may add a face and/or a palm photo. Both are optional. If you add one and give your consent, that image is sent to Google Gemini to write a speculative, traditional-style reflection. The calculators and the Vastu tools never use photos. Details are in the <a href="{{ url_for('privacy') }}">Privacy Policy</a>.</p></div>
+</div></section>
+{% endblock %}

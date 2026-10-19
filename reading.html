@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Get My Numerology Reading — {{ site_name }}{% endblock %}
+{% block desc %}Enter your name and date of birth for a free numerology preview. Face and palm photos are optional.{% endblock %}
+{% block content %}
+<section class="page-head sky"><div class="wrap"><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / Numerology reading</p><h1>Discover your personal reading</h1>
+  <p class="lead">A few details are all you need. Photos are <strong>optional</strong>.</p></div></section>
+
+<section class="section" style="padding-top:2.5rem"><div class="narrow">
+<form id="readingForm" class="card form-card" method="POST" action="{{ url_for('reading_form') }}" enctype="multipart/form-data" novalidate data-max-mb="{{ max_file_mb }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <div class="progress" id="progress" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span></div>
+  <div class="form-error" id="formErrors" role="alert" {% if not scroll_to_errors %}hidden{% endif %}>
+    {% if scroll_to_errors %}<strong>Please check your details above and try again.</strong>{% endif %}
+  </div>
+
+  <fieldset class="fieldset"><legend>1. About you</legend>
+    <div class="fgrid">
+      <div class="field full"><label class="lbl" for="name">Full name <span class="req" aria-hidden="true">*</span></label>
+        <input type="text" id="name" name="name" maxlength="80" autocomplete="name" placeholder="e.g. Aarav Sharma" value="{{ form.get('name', '') }}" required></div>
+      <div class="field full"><span class="lbl" id="genderLbl">Gender <span class="req" aria-hidden="true">*</span></span>
+        <div class="pills" role="radiogroup" aria-labelledby="genderLbl">
+          {% for g in genders %}<label class="pill"><input type="radio" name="gender" value="{{ g }}" {% if form.get('gender') == g %}checked{% endif %}><span>{{ g }}</span></label>{% endfor %}
+        </div></div>
+      <div class="field"><label class="lbl" for="dob">Date of birth <span class="req" aria-hidden="true">*</span></label>
+        <input type="date" id="dob" name="dob" min="1900-01-01" value="{{ form.get('dob', '') }}" required></div>
+      <div class="field"><label class="lbl" for="tob">Time of birth <small class="opt">(optional)</small></label>
+        <input type="time" id="tob" name="tob" value="{{ form.get('tob', '') }}"></div>
+      <div class="field full"><label class="lbl" for="pob">Place of birth <small class="opt">(optional)</small></label>
+        <input type="text" id="pob" name="pob" maxlength="100" placeholder="City, State, Country" value="{{ form.get('pob', '') }}"></div>
+    </div>
+  </fieldset>
+
+  <fieldset class="fieldset"><legend>2. What would you like to explore?</legend>
+    <p class="sub">Choose one or more categories.</p>
+    <div class="cat-pick">
+      {% for key, title, icon, desc in categories_all %}
+      <label class="pick"><input type="checkbox" name="categories" value="{{ key }}" {% if key in selected %}checked{% endif %}>
+        <span class="box"><span class="ic" aria-hidden="true">{{ icon }}</span><span><b>{{ title }}</b><small>{{ desc }}</small></span><span class="chk" aria-hidden="true">✓</span></span></label>
+      {% endfor %}
+    </div>
+  </fieldset>
+
+  <fieldset class="fieldset"><legend>3. Optional extras</legend>
+    <div class="fgrid" style="margin-bottom:1.2rem">
+      <div class="field"><label class="lbl" for="mole_location">Mole location <small class="opt">(optional)</small></label>
+        <select id="mole_location" name="mole_location"><option value="">Select a location</option>
+          {% for o in mole_options %}<option value="{{ o }}" {% if form.get('mole_location') == o %}selected{% endif %}>{{ o }}</option>{% endfor %}</select></div>
+      <div class="field"><label class="lbl" for="mole_detail">More detail <small class="opt">(optional)</small></label>
+        <input type="text" id="mole_detail" name="mole_detail" maxlength="100" placeholder="e.g. left side" value="{{ form.get('mole_detail', '') }}"></div>
+    </div>
+
+    <div class="optional-box">
+      <div class="head"><h3 style="margin:0">Face &amp; palm photos</h3><span class="tag">Optional</span></div>
+      <p class="sub" style="margin-bottom:.4rem">Skip this whole box if you like. You can upload only a face photo, only a palm photo, both, or neither.</p>
+      <div class="upload-grid">
+        <div>
+          <span class="lbl">Face photo <small class="opt">(optional)</small></span>
+          <label class="dropzone" for="face_image" id="faceZone" tabindex="0">
+            <img id="facePreview" class="preview-img" alt="Preview of your chosen face photo" hidden>
+            <span class="dz-text"><span class="dz-icon" aria-hidden="true">☺</span>Tap to choose a face photo<small>Clear, front-facing · PNG, JPG or WEBP · up to {{ max_file_mb }} MB</small></span></label>
+          <input type="file" id="face_image" name="face_image" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden>
+          <button type="button" class="btn btn-outline btn-sm rm-btn" id="faceRemove" hidden>Remove face photo</button>
+        </div>
+        <div>
+          <span class="lbl">Palm / hand photo <small class="opt">(optional)</small></span>
+          <div class="guidance" id="palmInstruction"><strong>Hand Photo Guidance:</strong> <span class="g-m">Male users should upload their right-hand photo.</span> <span class="g-f">Female users should upload their left-hand photo.</span>
+            <div id="handNote" style="margin-top:.3rem;font-size:.88rem" aria-live="polite"></div></div>
+          <label class="dropzone" for="palm_image" id="palmZone" tabindex="0">
+            <img id="palmPreview" class="preview-img" alt="Preview of your chosen palm photo" hidden>
+            <span class="dz-text"><span class="dz-icon" aria-hidden="true">✋</span>Tap to choose a palm photo<small>Open palm, lines visible · PNG, JPG or WEBP · up to {{ max_file_mb }} MB</small></span></label>
+          <input type="file" id="palm_image" name="palm_image" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden>
+          <button type="button" class="btn btn-outline btn-sm rm-btn" id="palmRemove" hidden>Remove palm photo</button>
+        </div>
+      </div>
+
+      <div class="privacy-box" id="photoPrivacy">
+        <strong>Photo Privacy &amp; Terms</strong>
+        <p style="margin:.4rem 0">Face and hand photos are optional. If you choose to upload a photo, that image is sent to Google’s Gemini AI service to write an AI-assisted, speculative reflection. Avoid uploading sensitive or identifying images you do not wish to share with a third-party AI provider. Gemini’s results can be inaccurate.</p>
+        <p style="margin:.4rem 0">We re-save your photo on this website’s server, and keep it for up to {{ retention_days }} days (or until you delete it) so it can appear in your report. Your name, date of birth and birthplace are not sent to Gemini. Read the <a href="{{ url_for('privacy') }}" target="_blank">Privacy Policy</a> and <a href="{{ url_for('terms') }}" target="_blank">Terms &amp; Conditions</a>.</p>
+        <p id="consentHint" style="margin:.4rem 0;color:var(--blue-d)" hidden><strong>A photo is selected, so consent is needed to continue.</strong></p>
+        <label class="consent" id="consentWrap"><input type="checkbox" id="photo_consent" name="photo_consent"><span>I understand that any photo I choose to upload may be processed by Google Gemini AI to generate my reading. <small class="opt">(Only needed if you upload a photo.)</small></span></label>
+      </div>
+    </div>
+  </fieldset>
+
+  <p style="font-size:.88rem;color:var(--muted)">This is a traditional, entertainment and self-reflection reading, not a prediction, diagnosis or professional advice.</p>
+  <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitBtn">Show My Free Preview ✦</button>
+</form>
+</div></section>
+
+<div class="overlay" id="loadingOverlay" hidden role="status" aria-live="polite">
+  <div class="overlay-box"><div class="orbit"><i></i></div><h3 id="loadingTitle">Preparing your reading…</h3><p id="loadingText" style="color:var(--muted)"></p></div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}About Us — {{ site_name }}{% endblock %}
+{% block desc %}{{ site_name }} brings numerology and Vastu together in one clear, honest place, with every calculation explained.{% endblock %}
+{% block content %}
+<section class="page-head sky"><div class="glow g1"></div><div class="wrap"><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / About us</p>
+  <h1>About {{ site_name }}</h1><p class="lead">Traditional knowledge, explained clearly and calculated openly.</p></div></section>
+
+<section class="section"><div class="wrap split">
+  <div class="reveal"><p class="eyebrow">Our story</p><h2>Why {{ site_name }} exists</h2><div class="divider"></div>
+    <p>Numerology and Vastu are old systems that many people find hard to approach. Results are often given without any working, and the reasoning stays hidden.</p>
+    <p>{{ site_name }} does it the other way round. Our numerology tools follow a documented workbook of formulas, and our Vastu ratings come from a documented direction workbook. Every result shows how it was reached, so you can check it, question it, or take it to a practitioner.</p>
+  </div>
+  <div class="reveal d2"><img class="arch" style="border-radius:28px;aspect-ratio:5/4;object-fit:cover" src="{{ url_for('static', filename='img/photos/hand-chart-night.jpg') }}" alt="Hands holding a glowing star chart against a night sky" width="1179" height="1427"></div>
+</div></section>
+
+<section class="section alt"><div class="wrap">
+  <div class="sec-head reveal"><p class="eyebrow">Why choose us</p><h2>What you can rely on</h2><div class="divider"></div></div>
+  {% include "_why.html" %}
+</div></section>
+
+<section class="section"><div class="narrow">
+  <div class="sec-head reveal"><p class="eyebrow">What we are not</p><h2>Honest limits</h2><div class="divider"></div></div>
+  <div class="card reveal"><ul class="tick"><li>We do not promise outcomes. Numerology and Vastu are traditional systems, not science.</li>
+    <li>We do not give medical, legal, financial or relationship advice.</li>
+    <li>We do not show testimonials, awards or client numbers we cannot back up.</li></ul></div>
+  <div style="margin-top:2rem">{% include "_astro.html" %}</div>
+</div></section>
+{% endblock %}

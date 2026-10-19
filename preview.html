@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Your Free Preview — {{ site_name }}{% endblock %}
+{% block content %}
+<section class="page-head sky"><div class="wrap"><span class="tag">Free preview</span><h1 style="margin-top:.6rem">Namaste, {{ reading.name }}</h1>
+  <p class="lead">Here is the first part of your personal reading{% if combo_title %} — <em>{{ combo_title }}</em>{% endif %}.</p></div></section>
+
+<section class="section" style="padding-top:2.5rem"><div class="narrow">
+  <div class="grid g2">
+    <div class="card number-card reveal"><p class="num-label">Moolank · Birth Number</p><div class="num-big counter">{{ reading.moolank }}</div><p class="num-planet">{{ md.planet }} · {{ md.title }}</p>
+      <div class="calc"><b>How it was calculated:</b><br>{{ moolank_steps }}</div></div>
+    <div class="card number-card reveal d2"><p class="num-label">Bhagyank · Life Path Number</p><div class="num-big counter">{{ reading.bhagyank }}</div><p class="num-planet">{{ bd.planet }} · {{ bd.title }}</p>
+      <div class="calc"><b>How it was calculated:</b><br>{{ bhagyank_steps }}</div></div>
+  </div>
+
+  <div class="card sec-card reveal" style="margin-top:1.3rem"><h2><span class="ic">✺</span>Your number combination</h2>
+    <p>{{ pair_text }}</p>
+    <p style="color:var(--muted);margin:0">Traditionally, Moolank shows how you appear and behave day to day, while Bhagyank points to the path your life tends to follow.</p></div>
+
+  <div class="card sec-card reveal"><h2><span class="ic">☉</span>Personality overview</h2><p>{{ overview }}</p>
+    <div class="compare"><div><h3 style="font:700 1.05rem var(--sans);color:var(--blue-d)">Key strengths</h3><ul class="tick">{% for s in strengths %}<li>{{ s }}</li>{% endfor %}</ul></div>
+      <div><h3 style="font:700 1.05rem var(--sans);color:var(--blue-d)">Possible challenges</h3><ul class="tick">{% for s in challenges %}<li>{{ s }}</li>{% endfor %}</ul></div></div></div>
+
+  {% for i in insights %}
+  <div class="card sec-card insight reveal"><h2><span class="ic">{{ i.icon }}</span>{{ i.title }}</h2><p>{{ i.text }}</p><div class="tip"><b>Try this:</b> {{ i.tip }}</div></div>
+  {% endfor %}
+
+  <div class="card sec-card reveal"><h2><span class="ic">✎</span>A reflection for today</h2><p style="font-size:1.1rem;font-family:var(--serif);color:var(--navy)">“{{ reflection }}”</p></div>
+
+  <div class="card sec-card reveal"><h2><span class="ic">✋</span>Photo-based reflection</h2>
+    {% if photo_state.face == 'ok' or photo_state.palm == 'ok' %}
+      {% if ai_summary %}<p>{{ ai_summary }}</p>{% endif %}<p class="note-box">AI-assisted and speculative. The full text is in the complete report.</p>
+    {% elif photo_state.face == 'unavailable' or photo_state.palm == 'unavailable' %}
+      <div class="empty">The AI could not analyse your photo this time. {{ ai_notice }} Your numerology reading is complete without it.</div>
+    {% else %}<div class="empty">You did not upload a photo, which is perfectly fine. Face and palm photos are optional, and your reading is complete without them.</div>{% endif %}</div>
+
+  <div class="card reveal"><h2 style="font-size:1.6rem">What’s in the preview vs the complete report</h2>
+    <div class="compare"><div><h4>✓ Included in this preview</h4><ul class="tick included"><li>Both numbers and their calculation</li><li>Number-combination summary</li><li>Personality overview, strengths &amp; challenges</li><li>A short insight for: {% for k, t, ic in cats %}{{ t }}{{ ', ' if not loop.last }}{% endfor %}</li></ul></div>
+    <div><h4>✦ Added in the complete report</h4><ul class="tick included"><li>Full interpretation for each chosen category</li><li>Reflection prompts &amp; practical suggestions</li><li>Compatibility and traditional remedies</li><li>Photo-based reflection, if you uploaded a photo</li><li>Print-friendly layout you can save as PDF</li></ul></div></div></div>
+
+  <div class="unlock reveal" style="margin-top:1.5rem"><h2>Open your complete reading</h2>
+    <p>{{ payment_text }}</p>
+    <a class="btn btn-gold btn-lg" href="{{ url_for('payment', reading_id=reading.id) }}">Continue to the complete report{% if demo_payment %} (demo){% else %} — ₹{{ price }}{% endif %}</a></div>
+
+  {% include "_yourdata.html" %}
+</div></section>
+{% endblock %}

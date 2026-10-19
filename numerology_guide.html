@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Number Guide — Numerology | {{ site_name }}{% endblock %}
+{% block desc %}All 24 numerology numbers, letter-value tables, master numbers, pinnacle and challenge tables, with worked examples.{% endblock %}
+{% block content %}
+{% set s1 = wb['Sheet1'] %}
+<section class="page-head sky"><div class="glow g1"></div><div class="wrap"><p class="crumbs"><a href="{{ url_for('index') }}">Home</a> / <a href="{{ url_for('numerology') }}">Numerology</a> / Number guide</p>
+  <h1>Numerology Number Guide</h1><p class="lead">The formulas, tables and worked examples behind every calculation on this website.</p></div></section>
+
+<section class="section"><div class="wrap">
+
+<details class="group" open><summary>The 24 numerology numbers</summary><div class="in">
+  <div class="tbl-wrap"><table class="tbl"><thead><tr><th>#</th><th>Number</th><th>Also called</th><th>How it is calculated</th></tr></thead><tbody>
+  {% for r in wb['Numerology Table'].rows %}<tr><td class="num">{{ r.no }}</td><td><strong>{{ r.name }}</strong></td><td>{{ r.also_called }}</td><td>{{ r.formula }}</td></tr>{% endfor %}</tbody></table></div>
+  <p class="src">Source: Numerology_Numbers_and_Formulas.xls, sheet “Numerology Table”.</p></div></details>
+
+<details class="group"><summary>Core numbers explained, with worked examples</summary><div class="in">
+  {% for c in wb['Sheet2'].core_numbers %}
+  <div class="blk"><h3>{{ c.title }}</h3>
+    {% if c.based_on %}<p><strong>Based on:</strong> {{ c.based_on }}</p>{% endif %}
+    {% if c.describes %}<div class="rich"><strong>What it describes:</strong>{{ c.describes | rich }}</div>{% endif %}
+    {% if c.example %}<p style="margin:.6rem 0 0"><strong>Worked example (as written in the workbook)</strong></p><pre class="pre">{{ c.example }}</pre>{% endif %}
+    {% if c.notes %}<p style="margin:.6rem 0 0"><strong>Notes</strong></p><pre class="pre">{{ c.notes }}</pre>{% endif %}</div>{% endfor %}
+  <p class="src">Source: sheet “Sheet2”. Examples are shown exactly as written, including any arithmetic slips; see “Notes on the source data” below.</p></div></details>
+
+<details class="group"><summary>Master numbers: 11, 22 and 33</summary><div class="in">
+  <ul class="tick"><li><strong>11</strong> — {{ nc.MASTER_MEANING[11] }}</li><li><strong>22</strong> — {{ nc.MASTER_MEANING[22] }}</li><li><strong>33</strong> — {{ nc.MASTER_MEANING[33] }}</li></ul>
+  <p>In a Life Path calculation, if day, month or year reduces to 11, 22 or 33, it is kept as it is and not reduced further.</p>
+  <p class="src">Source: sheet “Sheet2”, rows 9 and 14.</p></div></details>
+
+<details class="group"><summary>Letter values: Pythagorean, Chaldean and vowels</summary><div class="in">
+  {% for key, title in (('pythagorean','Pythagorean'),('chaldean','Chaldean')) %}
+  <h3>{{ title }}</h3>
+  <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Value</th><th>Letters</th></tr></thead><tbody>
+    {% for v in range(1,10) %}{% set ls = [] %}{% for ch, val in s1[key]['values'].items() if val == v %}{% set _ = ls.append(ch) %}{% endfor %}{% if ls %}<tr><td class="num">{{ v }}</td><td>{{ ls|join(', ') }}</td></tr>{% endif %}{% endfor %}</tbody></table></div>{% endfor %}
+  <h3>Vowel values (for the Soul Urge number)</h3>
+  <p>{% for ch, v in s1.vowel_values['values'].items() %}<span class="tag" style="margin:.15rem">{{ ch }} = {{ v }}</span>{% endfor %}</p>
+  <p>{{ s1.vowel_values.note }}</p>
+  <p class="src">Source: sheet “Sheet1”, cells C8:K18 (Chaldean), C24:L31 (Pythagorean), C47:L51 (vowels).</p></div></details>
+
+<details class="group"><summary>Intensified and Absent number reference</summary><div class="in">
+  <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Number</th>{% for n in range(1,10) %}<th>{{ n }}</th>{% endfor %}</tr></thead><tbody>
+    <tr><td>Letters</td>{% for g in s1.intensified_absence_reference.groups %}<td>{{ g }}</td>{% endfor %}</tr>
+    <tr><td>Row 36 values</td>{% for g in s1.intensified_absence_reference.row36_raw %}<td>{{ g }}</td>{% endfor %}</tr></tbody></table></div>
+  <p class="src">The workbook does not explain what the values in the last row mean, so they are shown as written. Source: sheet “Sheet1”, C34:L36.</p></div></details>
+
+<details class="group"><summary>Number combinations: fluctuating, discordant and harmonious</summary><div class="in">
+  <ul class="tick"><li><strong>Fluctuating:</strong> 1 &amp; 5, 6 &amp; 9, 2 &amp; 3</li><li><strong>Discordant:</strong> 4 &amp; 5, 8 &amp; 11, 6 &amp; 7</li><li><strong>Harmonious:</strong> 2 &amp; 6, 3 &amp; 6</li></ul>
+  {% set cm = s1.combination_matrix %}
+  <p><strong>Combination matrix</strong> as printed in the workbook (symbols “+”, “−”, “0” are not explained there):</p>
+  <div class="tbl-wrap"><table class="tbl"><thead><tr><th></th>{% for n in cm.numbers[1:] %}<th>{{ n }}</th>{% endfor %}</tr></thead><tbody>
+    {% for a in cm.numbers[:-1] %}<tr><td class="num">{{ a }}</td>{% for b in cm.numbers[1:] %}<td style="text-align:center">{{ cm.cells.get(a ~ '-' ~ b, '') }}</td>{% endfor %}</tr>{% endfor %}</tbody></table></div>
+  <p class="src">Sources: sheet “Sheet2” cell I27 (lists) and sheet “Sheet1” D57:P71 (matrix).</p></div></details>
+
+<details class="group"><summary>Life Path periods</summary><div class="in">
+  <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Life Path</th><th>1st period (month)</th><th>2nd period (day)</th><th>3rd period (year)</th><th>Significance</th></tr></thead><tbody>
+  {% for r in s1.life_period.rows %}<tr><td class="num">{{ r.life_path }}</td><td>{{ r.p1_start }}–{{ r.p1_end }}</td><td>{{ r.p2_start }}–{{ r.p2_end }}</td><td>{{ r.p3_raw }}</td><td>{{ r.significance }}</td></tr>{% endfor %}</tbody></table></div>
+  <p class="src">Shown exactly as printed (including values that look inconsistent, see notes). Source: sheet “Sheet1”, C74:M96.</p></div></details>
+
+<details class="group"><summary>Pinnacle cycles and challenge themes</summary><div class="in">
+  {% set pt = s1.pinnacle_table %}
+  <p>{{ pt.season_notes|join(' · ') }}</p>
+  <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Life Path</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>Significance</th></tr></thead><tbody>
+  {% for r in pt.rows %}<tr><td class="num">{{ r.life_path }}</td><td>{{ r.p1_start }}–{{ r.p1_end }}</td><td>{{ r.p2_start }}–{{ r.p2_end }}</td><td>{{ r.p3_start }}–{{ r.p3_end }}</td><td>{{ r.p4_start }}</td><td>{{ r.significance }}</td></tr>{% endfor %}</tbody></table></div>
+  <h3 style="margin-top:1.2rem">Challenge themes</h3>
+  <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Number</th><th>Theme</th></tr></thead><tbody>{% for n, t in s1.challenge_themes.items() %}<tr><td class="num">{{ n }}</td><td>{{ t }}</td></tr>{% endfor %}</tbody></table></div>
+  <p class="src">Source: sheet “Sheet1”, C102:Y122.</p></div></details>
+
+<details class="group"><summary>Transit letters</summary><div class="in">
+  <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Number</th><th>Letters</th><th>Significance</th></tr></thead><tbody>
+  {% for r in s1.transit_letters.rows %}<tr><td class="num">{{ r.number_label }}</td><td>{{ r.letters }}</td><td>{{ r.significance }}</td></tr>{% endfor %}</tbody></table></div>
+  <p class="src">Source: sheet “Sheet1”, C205:E222.</p></div></details>
+
+<details class="group"><summary>Essence number: the worked table</summary><div class="in">
+  {% set es = s1.essence_example %}
+  <p>Example: <strong>{{ es.name }}</strong>, born {{ es.dob }}. Each letter is active for as many years as its value; the first-name and last-name letters add up to that year's essence.</p>
+  <div class="tbl-wrap" style="max-height:420px;overflow:auto"><table class="tbl"><thead><tr><th>Year</th><th>First name</th><th>Last name</th><th>Essence</th></tr></thead><tbody>
+  {% for r in es.rows %}<tr><td>{{ es.dob[:4]|int + loop.index0 }}</td><td>{{ r.first_letter }} = {{ r.first_value }}</td><td>{{ r.last_letter }} = {{ r.last_value }}</td><td class="num">{{ r.first_value + r.last_value }} → {{ nc.reduce_number(r.first_value + r.last_value) }}</td></tr>{% endfor %}</tbody></table></div>
+  <p class="src">Source: sheet “Sheet1”, C125:M200. The calculator reproduces all {{ es.rows|length }} rows of this table.</p></div></details>
+
+<details class="group"><summary>Notes on the source data</summary><div class="in">
+  <p>The calculator follows the workbook's rules. Where its worked examples or tables disagree with those rules, the rule is used and the difference is listed here.</p>
+  <ul>
+    <li><strong>Destiny and Personality examples.</strong> In the “VIDYA SINGH” example, H is counted as 9 in one row (it is 8 elsewhere), and the vowel A is counted in the consonant row. The printed answers (Destiny 11, Personality 3) therefore differ from the rules applied correctly (Destiny 1, Personality 11).</li>
+    <li><strong>Fourth pinnacle example.</strong> 3 + 1982 is shown as 4; applying the rule gives 5.</li>
+    <li><strong>Pinnacle ages.</strong> The example text says “35 to 43” for the second pinnacle; the table says 36–44. The table is used.</li>
+    <li><strong>Intensified numbers.</strong> One note says to take all tied numbers, another says only the top two. All tied numbers are shown.</li>
+    <li><strong>Y and W as vowels.</strong> The note says “if the preceding letter is a vowel”, but the VIDYA example counts Y as a vowel because an A follows it. A neighbouring vowel on either side is used.</li>
+    <li><strong>Chaldean table.</strong> S is listed under 5 and X under 3, which differs from many published tables. It is used as written.</li>
+    <li><strong>Combination matrix.</strong> Symbols are not explained, and some (6 &amp; 9, 2 &amp; 3) differ from the named lists. Both are shown.</li>
+    <li><strong>Life-period table.</strong> Some entries overlap or contain typos (for example “51`”). They are shown as printed.</li>
+  </ul></div></details>
+
+</div></section>
+{% endblock %}
